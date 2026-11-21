@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#064e38">
+
+<title>Provider Dashboard | Edesvino Services</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #064e38;
+    --light-green: #087653;
+    --gold: #d6a62e;
+    --cream: #faf7ed;
+    --white: #ffffff;
+    --text: #25372e;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f6f3;
+    color: var(--text);
+}
+
+header {
+    background: var(--green);
+    color: white;
+    padding: 19px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.header-link {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.hero {
+    background: linear-gradient(120deg, #064e38, #087653);
+    color: white;
+    padding: 35px 22px 55px;
+}
+
+.hero h1 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #e0eee6;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.dashboard {
+    max-width: 1100px;
+    margin: -28px auto 40px;
+    padding: 0 18px;
+    position: relative;
+}
+
+.welcome-card {
+    background: white;
+    padding: 23px;
+    border-radius: 13px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.welcome-card h2 {
+    color: var(--green);
+    font-size: 21px;
+    margin-bottom: 7px;
+}
+
+.welcome-card p {
+    font-size: 13px;
+    color: #777;
+}
+
+.status {
+    background: #fff4d6;
+    color: #89640c;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.section-title {
+    color: var(--green);
+    margin: 30px 0 15px;
+    font-size: 19px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat-card {
+    background: white;
+    padding: 22px 15px;
+    border-radius: 12px;
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.stat-card .icon {
+    font-size: 25px;
+    margin-bottom: 13px;
+}
+
+.stat-card h3 {
+    color: var(--green);
+    font-size: 23px;
+    margin-bottom: 6px;
+}
+
+.stat-card p {
+    color: #777;
+    font-size: 12px;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.action-card {
+    background: white;
+    padding: 21px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border: 1px solid #edf0ed;
+    transition: 0.2s;
+}
+
+.action-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.action-card .icon {
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.action-card h3 {
+    color: var(--green);
+    font-size: 16px;
+    margin-bottom: 7px;
+}
+
+.action-card p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.panel {
+    background: white;
+    padding: 23px;
+    border-radius: 12px;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.panel h3 {
+    color: var(--green);
+    margin-bottom: 12px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 25px 10px;
+    color: #777;
+    line-height: 1.7;
+    font-size: 13px;
+}
+
+.empty-state .icon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.notice {
+    background: #fff8e6;
+    border-left: 4px solid var(--gold);
+    padding: 16px;
+    margin-top: 22px;
+    border-radius: 7px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+footer {
+    background: var(--green);
+    color: white;
+    text-align: center;
+    padding: 23px;
+    font-size: 13px;
+}
+
+footer span {
+    color: var(--gold);
+}
+
+@media(max-width: 650px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 23px;
+    }
+}
+
+@media(max-width: 370px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        EDESVINO <span>SERVICES</span>
+    </div>
+
+    <a class="header-link" href="index.html">Back to Home</a>
+</header>
+
+<section class="hero">
+    <h1>Provider Dashboard</h1>
+    <p>
+        Manage your professional services, connect with customers
+        and grow your business with Edesvino.
+    </p>
+</section>
+
+<main class="dashboard">
+
+    <section class="welcome-card">
+        <div>
+            <h2>Welcome, Professional!</h2>
+            <p>Your service business starts here.</p>
+        </div>
+
+        <div class="status">
+            Application status: Not connected
+        </div>
+    </section>
+
+    <h2 class="section-title">Your Overview</h2>
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <div class="icon">📩</div>
+            <h3>—</h3>
+            <p>New Job Requests</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">🔧</div>
+            <h3>—</h3>
+            <p>Active Jobs</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">✅</div>
+            <h3>—</h3>
+            <p>Completed Jobs</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">💰</div>
+            <h3>—</h3>
+            <p>Total Earnings</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">⭐</div>
+            <h3>—</h3>
+            <p>Customer Rating</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon">👤</div>
+            <h3>—</h3>
+            <p>Profile Status</p>
+        </div>
+
+    </section>
+
+    <h2 class="section-title">Manage Your Business</h2>
+
+    <section class="actions">
+
+        <a href="provider-register.html" class="action-card">
+            <div class="icon">👨‍🔧</div>
+            <h3>Provider Profile</h3>
+            <p>Register your professional details and services.</p>
+        </a>
+
+        <a href="provider-login.html" class="action-card">
+            <div class="icon">🔐</div>
+            <h3>Provider Account</h3>
+            <p>Access your provider login page.</p>
+        </a>
+
+        <a href="book-service.html" class="action-card">
+            <div class="icon">📋</div>
+            <h3>View Booking Page</h3>
+            <p>Explore the customer service booking page.</p>
+        </a>
+
+        <a href="index.html" class="action-card">
+            <div class="icon">🏠</div>
+            <h3>Marketplace Home</h3>
+            <p>Return to the Edesvino Services homepage.</p>
+        </a>
+
+    </section>
+
+    <section class="panel">
+        <h3>Recent Job Requests</h3>
+
+        <div class="empty-state">
+            <div class="icon">📭</div>
+            <p>
+                No job requests are displayed yet.
+                Customer requests will appear here
+                after the booking system is connected.
+            </p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h3>Recent Activities</h3>
+
+        <div class="empty-state">
+            <div class="icon">📊</div>
+            <p>
+                Your completed jobs, earnings and account
+                activities will appear here once your account
+                is connected.
+            </p>
+        </div>
+    </section>
+
+    <div class="notice">
+        <strong>Welcome to Edesvino Services!</strong><br>
+        Provider accounts will require registration, owner approval
+        and secure authentication before professionals can receive
+        customer job requests.
+    </div>
+
+</main>
+
+<footer>
+    © <span id="year"></span> Edesvino Services.
+    All Rights Reserved.
+    <br><br>
+    Building Opportunities. Connecting People.
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
