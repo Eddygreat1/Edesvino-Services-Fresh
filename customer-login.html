@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#064e38">
+<title>Customer Login | Edesvino Services</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #064e38;
+    --light-green: #087653;
+    --gold: #d6a62e;
+    --cream: #faf7ed;
+    --white: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--cream);
+    color: #26352e;
+    min-height: 100vh;
+}
+
+header {
+    background: var(--green);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: white;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.hero {
+    background: linear-gradient(135deg, #064e38, #087653);
+    color: white;
+    text-align: center;
+    padding: 48px 20px 70px;
+}
+
+.hero h1 {
+    font-size: 29px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    max-width: 430px;
+    margin: auto;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #e4eee8;
+}
+
+.gold-line {
+    width: 65px;
+    height: 4px;
+    background: var(--gold);
+    margin: 18px auto 0;
+    border-radius: 10px;
+}
+
+.login-container {
+    max-width: 440px;
+    margin: -38px auto 40px;
+    padding: 32px 25px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.09);
+    position: relative;
+}
+
+.login-container h2 {
+    color: var(--green);
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 9px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 27px;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--green);
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--light-green);
+    box-shadow: 0 0 0 3px rgba(8,118,83,0.09);
+}
+
+.password-wrap {
+    position: relative;
+}
+
+.password-wrap input {
+    padding-right: 65px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--light-green);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.forgot {
+    text-align: right;
+    margin-top: -8px;
+    margin-bottom: 22px;
+}
+
+.forgot a {
+    color: var(--light-green);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+button.login-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--gold);
+    color: #173426;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button.login-btn:hover {
+    background: #e6b83f;
+}
+
+.login-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.register {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+}
+
+.register a {
+    color: var(--light-green);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#message {
+    display: none;
+    margin-top: 18px;
+    padding: 13px;
+    background: #fff5dc;
+    color: #72500b;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+footer {
+    background: var(--green);
+    color: white;
+    text-align: center;
+    padding: 23px 15px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+footer span {
+    color: var(--gold);
+}
+
+@media(max-width: 500px) {
+    .login-container {
+        margin-left: 14px;
+        margin-right: 14px;
+        padding: 27px 20px;
+    }
+
+    .hero h1 {
+        font-size: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        EDESVINO <span>SERVICES</span>
+    </div>
+    <a href="index.html">Home</a>
+</header>
+
+<section class="hero">
+    <h1>Welcome Back!</h1>
+
+    <p>
+        Sign in to your Edesvino Services account
+        and connect with professionals you can trust.
+    </p>
+
+    <div class="gold-line"></div>
+</section>
+
+<main class="login-container">
+
+    <h2>Customer Login</h2>
+
+    <p class="subtitle">
+        Enter your account details to continue.
+    </p>
+
+    <form id="loginForm">
+
+        <div class="field">
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                autocomplete="email"
+                required>
+        </div>
+
+        <div class="field">
+            <label for="password">Password</label>
+
+            <div class="password-wrap">
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required>
+
+                <button
+                    type="button"
+                    class="toggle-password"
+                    onclick="togglePassword()">
+                    SHOW
+                </button>
+            </div>
+        </div>
+
+        <div class="forgot">
+            <a href="customer-forgot-password.html">
+                Forgot your password?
+            </a>
+        </div>
+
+        <button type="submit" class="login-btn" id="loginBtn">
+            Sign In
+        </button>
+
+        <div id="message"></div>
+
+    </form>
+
+    <div class="register">
+        Don't have an account yet?<br>
+        <a href="customer-register.html">
+            Create a Customer Account
+        </a>
+    </div>
+
+</main>
+
+<footer>
+    © <span id="year"></span> Edesvino Services.
+    All Rights Reserved.
+    <br>
+    Building Opportunities. Connecting People.
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+function togglePassword() {
+    const password = document.getElementById("password");
+    const button = document.querySelector(".toggle-password");
+
+    if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "HIDE";
+    } else {
+        password.type = "password";
+        button.textContent = "SHOW";
+    }
+}
+
+document.getElementById("loginForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const message = document.getElementById("message");
+
+    message.style.display = "block";
+
+    message.textContent =
+        "The login page is ready. Secure customer sign-in will be activated when we connect the Edesvino Services authentication system. No login has been performed yet.";
+
+});
+</script>
+
+</body>
+</html>
