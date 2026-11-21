@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owner Dashboard | Edesvino Services</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --green: #064e3b;
+    --deep: #022c22;
+    --gold: #d4ad55;
+    --cream: #faf7ef;
+    --white: #ffffff;
+    --text: #24352e;
+    --muted: #84918a;
+    --border: #e8ece7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+}
+
+header {
+    background: linear-gradient(120deg, var(--deep), var(--green));
+    color: white;
+    padding: 25px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.brand span {
+    color: var(--gold);
+}
+
+.owner-label {
+    font-size: 12px;
+    color: #e8d6a7;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+.header-badge {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 9px 15px;
+    border-radius: 25px;
+    font-size: 12px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1250px;
+    margin: 35px auto;
+}
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: var(--green);
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.notice {
+    background: #fff8e7;
+    border: 1px solid #ead9a9;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 25px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #72591e;
+}
+
+.section-title {
+    color: var(--green);
+    font-size: 18px;
+    margin: 28px 0 15px;
+    font-weight: 700;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 17px;
+}
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.025);
+}
+
+.stat-icon {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.stat-number {
+    font-size: 27px;
+    color: var(--green);
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.stat-note {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+}
+
+.action-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 22px;
+    text-decoration: none;
+    color: var(--text);
+    transition: 0.2s;
+}
+
+.action-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+}
+
+.action-icon {
+    font-size: 27px;
+    margin-bottom: 13px;
+}
+
+.action-card h3 {
+    font-size: 15px;
+    color: var(--green);
+    margin-bottom: 7px;
+}
+
+.action-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.panel {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    margin-top: 25px;
+}
+
+.panel h2 {
+    color: var(--green);
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.panel p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.quick-links a {
+    text-decoration: none;
+    background: var(--green);
+    color: white;
+    padding: 11px 15px;
+    border-radius: 9px;
+    font-size: 12px;
+}
+
+.quick-links a:hover {
+    background: var(--deep);
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+footer span {
+    color: var(--gold);
+}
+
+@media(max-width: 850px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 520px) {
+    .container {
+        width: 92%;
+    }
+
+    .welcome h1 {
+        font-size: 25px;
+    }
+
+    .stats, .actions {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 22px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <div class="brand">EDESVINO <span>SERVICES</span></div>
+        <div class="owner-label">PLATFORM OWNER CONTROL CENTRE</div>
+    </div>
+    <div class="header-badge">OWNER DASHBOARD</div>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <h1>Welcome, Platform Owner</h1>
+        <p>Manage your service marketplace and monitor its operations from one place.</p>
+    </section>
+
+    <div class="notice">
+        <strong>Dashboard preview:</strong> Your control centre design is ready.
+        Live customer records, provider applications, bookings and financial
+        figures will appear after we connect the separate Edesvino Services
+        database and secure owner authentication.
+    </div>
+
+    <h2 class="section-title">Platform Overview</h2>
+
+    <section class="stats">
+
+        <div class="card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-label">Registered Customers</div>
+            <div class="stat-number">—</div>
+            <div class="stat-note">Awaiting database connection</div>
+        </div>
+
+        <div class="card">
+            <div class="stat-icon">🛠️</div>
+            <div class="stat-label">Service Providers</div>
+            <div class="stat-number">—</div>
+            <div class="stat-note">Awaiting database connection</div>
+        </div>
+
+        <div class="card">
+            <div class="stat-icon">📋</div>
+            <div class="stat-label">Total Bookings</div>
+            <div class="stat-number">—</div>
+            <div class="stat-note">Awaiting database connection</div>
+        </div>
+
+        <div class="card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-label">Platform Earnings</div>
+            <div class="stat-number">—</div>
+            <div class="stat-note">Awaiting commission integration</div>
+        </div>
+
+    </section>
+
+    <h2 class="section-title">Management Centre</h2>
+
+    <section class="actions">
+
+        <a href="provider-register.html" class="action-card">
+            <div class="action-icon">📝</div>
+            <h3>Provider Applications</h3>
+            <p>Review applications from professionals who want to join Edesvino Services.</p>
+        </a>
+
+        <a href="provider-dashboard.html" class="action-card">
+            <div class="action-icon">🔧</div>
+            <h3>Provider Operations</h3>
+            <p>Prepare to monitor service providers and their activities.</p>
+        </a>
+
+        <a href="book-service.html" class="action-card">
+            <div class="action-icon">📅</div>
+            <h3>Customer Bookings</h3>
+            <p>Open the customer booking page and prepare to manage service requests.</p>
+        </a>
+
+        <a href="customer-register.html" class="action-card">
+            <div class="action-icon">👤</div>
+            <h3>Customer Management</h3>
+            <p>Prepare to manage customer accounts and registrations.</p>
+        </a>
+
+        <a href="provider-login.html" class="action-card">
+            <div class="action-icon">🔐</div>
+            <h3>Provider Login</h3>
+            <p>Open the provider sign-in page.</p>
+        </a>
+
+        <a href="customer-login.html" class="action-card">
+            <div class="action-icon">🔑</div>
+            <h3>Customer Login</h3>
+            <p>Open the customer sign-in page.</p>
+        </a>
+
+    </section>
+
+    <section class="panel">
+        <h2>Financial Management</h2>
+        <p>
+            This section will display completed service payments,
+            provider payouts, platform commissions and transaction history.
+            Financial figures will only be shown after verified payment
+            records and commission calculations are connected.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>Platform Settings</h2>
+        <p>
+            Future controls will include service categories, operating
+            locations, provider approval rules, commission settings,
+            notifications and platform administration.
+        </p>
+
+        <div class="quick-links">
+            <a href="index.html">Visit Homepage</a>
+            <a href="provider-register.html">Provider Registration</a>
+            <a href="book-service.html">Book a Service</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    © 2026 <span>Edesvino Services</span>. Building Opportunities. Connecting Professionals.
+</footer>
+
+</body>
+</html>
