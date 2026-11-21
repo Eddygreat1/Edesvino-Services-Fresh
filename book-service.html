@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#064b35">
+
+<title>Book a Service | Edesvino Services</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f8f2;
+  color: #24352d;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(135deg, #043d2c, #08734b);
+  padding: 20px;
+  color: white;
+}
+
+.nav {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #e9bd55;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #06442f, #087b50);
+  color: white;
+  padding: 55px 20px 75px;
+  text-align: center;
+}
+
+.hero .tag {
+  display: inline-block;
+  background: rgba(255,255,255,.13);
+  color: #f4d47f;
+  padding: 7px 16px;
+  border-radius: 30px;
+  font-size: 12px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 6vw, 45px);
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 580px;
+  margin: auto;
+  color: #e2eee7;
+  font-size: 15px;
+}
+
+.container {
+  max-width: 850px;
+  margin: -35px auto 50px;
+  padding: 0 15px;
+  position: relative;
+}
+
+.booking-card {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.09);
+}
+
+.section-title {
+  color: #075b3d;
+  font-size: 21px;
+  margin-bottom: 5px;
+}
+
+.section-subtitle {
+  color: #78827b;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.service-option {
+  position: relative;
+}
+
+.service-option input {
+  position: absolute;
+  opacity: 0;
+}
+
+.service-option label {
+  display: block;
+  border: 1px solid #e0e8e1;
+  border-radius: 12px;
+  padding: 15px 7px;
+  text-align: center;
+  cursor: pointer;
+  background: #fbfcfa;
+  transition: .2s;
+  height: 100%;
+}
+
+.service-option label:hover {
+  border-color: #c69b38;
+  transform: translateY(-2px);
+}
+
+.service-option input:checked + label {
+  border: 2px solid #08734b;
+  background: #edf8f1;
+  box-shadow: 0 3px 12px rgba(8,115,75,.10);
+}
+
+.icon {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 7px;
+}
+
+.service-option label span:last-child {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 17px;
+}
+
+.field {
+  margin-bottom: 17px;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  display: block;
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 7px;
+  color: #344b3d;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #dce4dc;
+  border-radius: 9px;
+  font-size: 14px;
+  background: #fff;
+  color: #26372e;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #08734b;
+  box-shadow: 0 0 0 3px rgba(8,115,75,.09);
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.gold-line {
+  height: 1px;
+  background: #eee6d1;
+  margin: 25px 0;
+}
+
+.submit-btn {
+  width: 100%;
+  border: none;
+  background: linear-gradient(135deg, #c3942f, #e5bd5c);
+  color: #173b2a;
+  padding: 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.submit-btn:hover {
+  filter: brightness(1.04);
+}
+
+.notice {
+  background: #f1f7f1;
+  border-left: 4px solid #08734b;
+  padding: 13px;
+  font-size: 12px;
+  color: #526456;
+  border-radius: 5px;
+  margin-top: 18px;
+}
+
+#message {
+  display: none;
+  background: #fff6e4;
+  color: #74551b;
+  padding: 14px;
+  border-radius: 9px;
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.back {
+  display: block;
+  text-align: center;
+  color: #08734b;
+  text-decoration: none;
+  margin-top: 23px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  background: #063c2b;
+  color: #dce9df;
+  padding: 25px 15px;
+  font-size: 12px;
+}
+
+footer span {
+  color: #e9bd55;
+}
+
+@media(max-width:600px) {
+  .booking-card {
+    padding: 21px 16px;
+  }
+
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .field.full {
+    grid-column: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">EDESVINO <span>SERVICES</span></div>
+    <a href="index.html">Home</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="tag">PROFESSIONAL SERVICES MADE EASIER</div>
+  <h1>What Service Do You Need?</h1>
+  <p>
+    Tell us what you need. Edesvino Services is being built
+    to connect you with professionals who can get the job done.
+  </p>
+</section>
+
+<main class="container">
+
+<div class="booking-card">
+
+  <h2 class="section-title">Request a Service</h2>
+  <p class="section-subtitle">
+    Complete the details below to prepare your service request.
+  </p>
+
+  <form id="bookingForm">
+
+    <h3 class="section-title" style="font-size:16px;margin-bottom:14px;">
+      1. Choose a Service
+    </h3>
+
+    <div class="services">
+
+      <div class="service-option">
+        <input type="radio" name="category" id="plumbing"
+        value="Plumbing" required>
+        <label for="plumbing">
+          <span class="icon">🚰</span>
+          <span>Plumbing</span>
+        </label>
+      </div>
+
+      <div class="service-option">
+        <input type="radio" name="category" id="electrical"
+        value="Electrical Work">
+        <label for="electrical">
+          <span class="icon">💡</span>
+          <span>Electrical</span>
+        </label>
+      </div>
+
+      <div class="service-option">
+        <input type="radio" name="category" id="cleaning"
+        value="Cleaning">
+        <label for="cleaning">
+          <span class="icon">🧹</span>
+          <span>Cleaning</span>
+        </label>
+      </div>
+
+      <div class="service-option">
+        <input type="radio" name="category" id="ac"
+        value="Air Conditioning">
+        <label for="ac">
+          <span class="icon">❄️</span>
+          <span>AC Services</span>
+        </label>
+      </div>
+
+      <div class="service-option">
+        <input type="radio" name="category" id="carpentry"
+        value="Carpentry">
+        <label for="carpentry">
+          <span class="icon">🪚</span>
+          <span>Carpentry</span>
+        </label>
+      </div>
+
+      <div class="service-option">
+        <input type="radio" name="category" id="mechanic"
+        value="Mechanic Services">
+        <label for="mechanic">
+          <span class="icon">🔧</span>
+          <span>Mechanic</span>
+        </label>
+      </div>
+
+    </div>
+
+    <div class="gold-line"></div>
+
+    <h3 class="section-title" style="font-size:16px;margin-bottom:17px;">
+      2. Your Contact Details
+    </h3>
+
+    <div class="field-grid">
+
+      <div class="field">
+        <label for="customerName">Full Name</label>
+        <input type="text" id="customerName"
+        placeholder="Your full name" required>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone"
+        placeholder="Your phone number" required>
+      </div>
+
+      <div class="field full">
+        <label for="email">Email Address</label>
+        <input type="email" id="email"
+        placeholder="Your email address" required>
+      </div>
+
+    </div>
+
+    <div class="gold-line"></div>
+
+    <h3 class="section-title" style="font-size:16px;margin-bottom:17px;">
+      3. Job Location and Details
+    </h3>
+
+    <div class="field-grid">
+
+      <div class="field">
+        <label for="state">State</label>
+        <input type="text" id="state"
+        value="Lagos" required>
+      </div>
+
+      <div class="field">
+        <label for="city">City / Area</label>
+        <input type="text" id="city"
+        placeholder="E.g. Ikeja" required>
+      </div>
+
+      <div class="field full">
+        <label for="address">Street / Full Address</label>
+        <input type="text" id="address"
+        placeholder="Where should the professional meet you?" required>
+      </div>
+
+      <div class="field">
+        <label for="date">Preferred Date</label>
+        <input type="date" id="date" required>
+      </div>
+
+      <div class="field">
+        <label for="time">Preferred Time</label>
+        <input type="time" id="time" required>
+      </div>
+
+      <div class="field full">
+        <label for="description">Describe the Job</label>
+        <textarea id="description"
+        placeholder="Explain the work you need done..." required></textarea>
+      </div>
+
+    </div>
+
+    <div class="notice">
+      <strong>How it works:</strong> Once the booking system is connected,
+      your request will be sent to eligible professionals. You will be
+      able to receive responses and follow your job progress.
+    </div>
+
+    <button type="submit" class="submit-btn">
+      Request a Professional →
+    </button>
+
+    <div id="message"></div>
+
+  </form>
+
+  <a href="index.html" class="back">← Return to Homepage</a>
+
+</div>
+</main>
+
+<footer>
+  © <span id="year"></span> Edesvino Services.
+  Connecting people with professionals.
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+document.getElementById("date").min =
+  new Date().toISOString().split("T")[0];
+
+document.getElementById("bookingForm").addEventListener("submit",
+function(event) {
+  event.preventDefault();
+
+  const message = document.getElementById("message");
+
+  message.style.display = "block";
+  message.textContent =
+    "Your booking page is ready. Actual booking submission will be activated after we connect the secure Edesvino Services database.";
+
+  message.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+});
+</script>
+
+</body>
+</html>
