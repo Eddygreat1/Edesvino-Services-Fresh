@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#075c3b">
-  <title>Become a Provider | Edesvino Services</title>
+  <title>Become a Service Provider | Edesvino Services</title>
 
   <style>
     * {
@@ -13,52 +12,39 @@
 
     body {
       margin: 0;
-      padding: 20px 14px;
+      padding: 20px;
       font-family: Arial, sans-serif;
-      background: #f3f7f4;
+      background: #f4f7f6;
       color: #222;
     }
 
     .container {
-      max-width: 520px;
-      margin: 20px auto;
-      background: white;
-      padding: 25px 20px;
-      border-radius: 14px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
-    }
-
-    .brand {
-      text-align: center;
-      color: #075c3b;
-      font-size: 23px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .gold {
-      color: #c99b28;
+      max-width: 650px;
+      margin: 25px auto;
+      padding: 25px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
     }
 
     h1 {
       text-align: center;
-      font-size: 25px;
-      margin-bottom: 10px;
+      color: #087443;
+      margin-bottom: 8px;
     }
 
-    .intro {
+    .subtitle {
       text-align: center;
       color: #666;
       line-height: 1.6;
-      font-size: 14px;
       margin-bottom: 25px;
     }
 
     label {
       display: block;
+      margin-top: 16px;
+      margin-bottom: 7px;
       font-weight: bold;
-      margin: 15px 0 7px;
-      font-size: 14px;
     }
 
     input, select, textarea {
@@ -71,171 +57,402 @@
     }
 
     textarea {
-      min-height: 100px;
+      min-height: 110px;
       resize: vertical;
     }
 
     .notice {
-      background: #fff8e6;
-      border-left: 4px solid #c99b28;
-      padding: 12px;
-      font-size: 13px;
+      background: #eaf6ef;
+      border-left: 4px solid #087443;
+      padding: 13px;
+      margin: 20px 0;
       line-height: 1.6;
-      margin-top: 20px;
+      font-size: 14px;
     }
 
-    .agreement {
+    .checkbox-row {
       display: flex;
       align-items: flex-start;
-      gap: 9px;
-      font-size: 13px;
-      line-height: 1.5;
+      gap: 10px;
       margin-top: 20px;
+      line-height: 1.5;
     }
 
-    .agreement input {
+    .checkbox-row input {
       width: auto;
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
     button {
       width: 100%;
-      background: #075c3b;
-      color: white;
-      border: none;
+      margin-top: 22px;
       padding: 15px;
-      border-radius: 8px;
+      border: none;
+      border-radius: 7px;
+      background: #087443;
+      color: white;
       font-size: 16px;
       font-weight: bold;
-      margin-top: 22px;
       cursor: pointer;
     }
 
     button:disabled {
-      opacity: 0.65;
+      background: #888;
       cursor: not-allowed;
-    }
-
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #075c3b;
-      text-decoration: none;
-      font-weight: bold;
     }
 
     #message {
       display: none;
-      padding: 12px;
-      margin-top: 15px;
-      background: #fff8e6;
+      padding: 14px;
+      margin-top: 18px;
       border-radius: 7px;
-      line-height: 1.5;
-      font-size: 14px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .success {
+      display: block !important;
+      background: #e5f7e9;
+      color: #17632b;
+    }
+
+    .error {
+      display: block !important;
+      background: #ffe8e8;
+      color: #a00000;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 22px;
+    }
+
+    a {
+      color: #087443;
+      font-weight: bold;
+    }
+
+    .small-text {
+      color: #666;
+      font-size: 13px;
+      margin-top: 6px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="brand">
-      EDESVINO <span class="gold">SERVICES</span>
-    </div>
+  <h1>Become a Service Provider</h1>
 
-    <h1>Become a Service Provider</h1>
+  <p class="subtitle">
+    Join Edesvino Services and connect with customers
+    looking for professional services.
+  </p>
 
-    <p class="intro">
-      Join Edesvino Services and connect with customers
-      looking for professionals like you.
-    </p>
-
-    <form id="providerForm">
-
-      <label for="fullName">Full Name</label>
-      <input type="text" id="fullName" required
-        placeholder="Enter your full name">
-
-      <label for="email">Email Address</label>
-      <input type="email" id="email" required
-        placeholder="Enter your email address">
-
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" required
-        placeholder="Enter your phone number">
-
-      <label for="state">State</label>
-      <input type="text" id="state" required
-        value="Lagos" placeholder="Enter your state">
-
-      <label for="location">City / Area</label>
-      <input type="text" id="location" required
-        placeholder="E.g. Ikeja, Lekki, Surulere">
-
-      <label for="category">Service Category</label>
-      <select id="category" required>
-        <option value="">Select your service</option>
-        <option>Plumbing</option>
-        <option>Electrical Work</option>
-        <option>Cleaning</option>
-        <option>Air Conditioning Services</option>
-        <option>Carpentry</option>
-        <option>Mechanic Services</option>
-        <option>Other Services</option>
-      </select>
-
-      <label for="experience">Years of Experience</label>
-      <select id="experience" required>
-        <option value="">Select experience</option>
-        <option>Less than 1 year</option>
-        <option>1–3 years</option>
-        <option>4–6 years</option>
-        <option>7–10 years</option>
-        <option>More than 10 years</option>
-      </select>
-
-      <label for="description">Tell Us About Your Services</label>
-      <textarea id="description" required
-        placeholder="Describe your skills and the services you provide"></textarea>
-
-      <div class="notice">
-        <strong>Important:</strong> Submitting an application does not
-        automatically make you an approved provider. Applications
-        will be reviewed before providers can receive customer jobs.
-      </div>
-
-      <label class="agreement">
-        <input type="checkbox" id="agreement" required>
-        <span>I confirm that the information I have provided is accurate.</span>
-      </label>
-
-      <button type="submit" id="submitBtn">
-        Submit Application
-      </button>
-
-      <div id="message"></div>
-
-    </form>
-
-    <a href="index.html" class="back">← Back to Edesvino Services</a>
-
+  <div class="notice">
+    <strong>Important:</strong>
+    Creating an account does not automatically approve you.
+    Your provider application will be reviewed before you
+    can receive customer bookings.
   </div>
 
-  <script>
-    document.getElementById("providerForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+  <form id="providerForm">
 
-      const message = document.getElementById("message");
+    <label for="fullName">Full Name *</label>
+    <input
+      type="text"
+      id="fullName"
+      required
+      autocomplete="name"
+      placeholder="Enter your full name"
+    >
 
-      message.style.display = "block";
-      message.textContent =
-        "Your registration form is ready, but application submission has not yet been activated. Please check back soon. We are connecting the secure registration system.";
+    <label for="businessName">Business / Trading Name</label>
+    <input
+      type="text"
+      id="businessName"
+      placeholder="Leave blank if you use your personal name"
+    >
 
-      message.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-  </script>
+    <label for="email">Email Address *</label>
+    <input
+      type="email"
+      id="email"
+      required
+      autocomplete="email"
+      placeholder="Enter your email address"
+    >
+
+    <label for="phone">Phone Number *</label>
+    <input
+      type="tel"
+      id="phone"
+      required
+      autocomplete="tel"
+      placeholder="Enter your phone number"
+    >
+
+    <label for="state">State *</label>
+    <input
+      type="text"
+      id="state"
+      required
+      placeholder="Enter your state"
+    >
+
+    <label for="location">City / Area *</label>
+    <input
+      type="text"
+      id="location"
+      required
+      placeholder="Example: Ikeja, Lagos"
+    >
+
+    <label for="category">Service Category *</label>
+    <select id="category" required>
+      <option value="">Select your service</option>
+      <option value="Plumbing">Plumbing</option>
+      <option value="Electrical Work">Electrical Work</option>
+      <option value="Cleaning">Cleaning</option>
+      <option value="Air Conditioning Services">Air Conditioning Services</option>
+      <option value="Carpentry">Carpentry</option>
+      <option value="Mechanic Services">Mechanic Services</option>
+      <option value="Other Services">Other Services</option>
+    </select>
+
+    <label for="experience">Years of Experience *</label>
+    <select id="experience" required>
+      <option value="">Select your experience</option>
+      <option value="Less than 1 year">Less than 1 year</option>
+      <option value="1–3 years">1–3 years</option>
+      <option value="4–6 years">4–6 years</option>
+      <option value="7–10 years">7–10 years</option>
+      <option value="More than 10 years">More than 10 years</option>
+    </select>
+
+    <label for="description">Describe Your Services *</label>
+    <textarea
+      id="description"
+      required
+      placeholder="Tell customers about your skills and the services you provide."
+    ></textarea>
+
+    <label for="password">Create Password *</label>
+    <input
+      type="password"
+      id="password"
+      required
+      minlength="8"
+      autocomplete="new-password"
+      placeholder="At least 8 characters"
+    >
+
+    <label for="confirmPassword">Confirm Password *</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      required
+      minlength="8"
+      autocomplete="new-password"
+      placeholder="Enter your password again"
+    >
+
+    <div class="small-text">
+      Use a strong password and keep it private.
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="agreement" required>
+      <label for="agreement" style="margin:0;font-weight:normal;">
+        I confirm that the information provided is accurate
+        and agree to the Edesvino Services provider review process.
+      </label>
+    </div>
+
+    <button type="submit" id="submitButton">
+      Create Provider Account
+    </button>
+
+  </form>
+
+  <div id="message"></div>
+
+  <div class="login-link">
+    Already have an account?
+    <a href="provider-login.html">Provider Login</a>
+  </div>
+
+</div>
+
+<script type="module">
+
+  import { createClient } from
+    'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+  const SUPABASE_URL =
+    'https://dhsfvctmvgmzrnpgxznd.supabase.co';
+
+  const SUPABASE_KEY =
+    'sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm';
+
+  const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const form = document.getElementById('providerForm');
+  const message = document.getElementById('message');
+  const submitButton = document.getElementById('submitButton');
+
+  function showMessage(text, type) {
+    message.textContent = text;
+    message.className = type;
+    message.style.display = 'block';
+  }
+
+  form.addEventListener('submit', async function(event) {
+
+    event.preventDefault();
+
+    message.style.display = 'none';
+
+    const fullName =
+      document.getElementById('fullName').value.trim();
+
+    const businessName =
+      document.getElementById('businessName').value.trim();
+
+    const email =
+      document.getElementById('email').value.trim().toLowerCase();
+
+    const phone =
+      document.getElementById('phone').value.trim();
+
+    const state =
+      document.getElementById('state').value.trim();
+
+    const location =
+      document.getElementById('location').value.trim();
+
+    const category =
+      document.getElementById('category').value;
+
+    const experience =
+      document.getElementById('experience').value;
+
+    const description =
+      document.getElementById('description').value.trim();
+
+    const password =
+      document.getElementById('password').value;
+
+    const confirmPassword =
+      document.getElementById('confirmPassword').value;
+
+    if (password.length < 8) {
+      showMessage(
+        'Your password must contain at least 8 characters.',
+        'error'
+      );
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      showMessage(
+        'Your passwords do not match. Please check them.',
+        'error'
+      );
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Creating Account...';
+
+    try {
+
+      const { data, error } = await supabase.auth.signUp({
+
+        email: email,
+
+        password: password,
+
+        options: {
+
+          emailRedirectTo:
+            'https://edesvino-services-fresh.pages.dev/provider-login.html',
+
+          data: {
+
+            account_type: 'service_provider',
+
+            full_name: fullName,
+
+            business_name: businessName || fullName,
+
+            phone: phone,
+
+            state: state,
+
+            location: location,
+
+            primary_category: category,
+
+            experience: experience,
+
+            service_description: description
+
+          }
+
+        }
+
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      if (data.user) {
+
+        form.reset();
+
+        showMessage(
+          'Your account has been created successfully. ' +
+          'Please check your email and confirm your email address. ' +
+          'After confirming, return to the Provider Login page ' +
+          'and sign in. Your provider application will then be ' +
+          'submitted for review with Pending status. ' +
+          'Creating an account does not mean you are already approved.',
+          'success'
+        );
+
+      } else {
+
+        showMessage(
+          'Your account request was received. Please check your email.',
+          'success'
+        );
+
+      }
+
+    } catch (error) {
+
+      showMessage(
+        error.message || 'Something went wrong. Please try again.',
+        'error'
+      );
+
+    } finally {
+
+      submitButton.disabled = false;
+      submitButton.textContent = 'Create Provider Account';
+
+    }
+
+  });
+
+</script>
 
 </body>
 </html>
