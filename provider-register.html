@@ -61,6 +61,30 @@
       resize: vertical;
     }
 
+    .password-wrapper {
+      display: flex;
+      gap: 8px;
+    }
+
+    .password-wrapper input {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .toggle-button {
+      width: auto;
+      min-width: 75px;
+      margin: 0;
+      padding: 10px;
+      background: #eaf6ef;
+      color: #087443;
+      border: 1px solid #087443;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
     .notice {
       background: #eaf6ef;
       border-left: 4px solid #087443;
@@ -99,6 +123,11 @@
     button:disabled {
       background: #888;
       cursor: not-allowed;
+    }
+
+    .toggle-button:disabled {
+      background: #eaf6ef;
+      color: #888;
     }
 
     #message {
@@ -240,24 +269,46 @@
     ></textarea>
 
     <label for="password">Create Password *</label>
-    <input
-      type="password"
-      id="password"
-      required
-      minlength="8"
-      autocomplete="new-password"
-      placeholder="At least 8 characters"
-    >
+
+    <div class="password-wrapper">
+      <input
+        type="password"
+        id="password"
+        required
+        minlength="8"
+        autocomplete="new-password"
+        placeholder="At least 8 characters"
+      >
+
+      <button
+        type="button"
+        class="toggle-button"
+        id="togglePassword"
+      >
+        Show
+      </button>
+    </div>
 
     <label for="confirmPassword">Confirm Password *</label>
-    <input
-      type="password"
-      id="confirmPassword"
-      required
-      minlength="8"
-      autocomplete="new-password"
-      placeholder="Enter your password again"
-    >
+
+    <div class="password-wrapper">
+      <input
+        type="password"
+        id="confirmPassword"
+        required
+        minlength="8"
+        autocomplete="new-password"
+        placeholder="Enter your password again"
+      >
+
+      <button
+        type="button"
+        class="toggle-button"
+        id="toggleConfirmPassword"
+      >
+        Show
+      </button>
+    </div>
 
     <div class="small-text">
       Use a strong password and keep it private.
@@ -306,11 +357,45 @@
   const message = document.getElementById('message');
   const submitButton = document.getElementById('submitButton');
 
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+
+  const togglePassword = document.getElementById('togglePassword');
+  const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+
   function showMessage(text, type) {
     message.textContent = text;
     message.className = type;
     message.style.display = 'block';
   }
+
+  // SHOW AND HIDE PASSWORD
+
+  togglePassword.addEventListener('click', function() {
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      togglePassword.textContent = 'Hide';
+    } else {
+      passwordInput.type = 'password';
+      togglePassword.textContent = 'Show';
+    }
+
+  });
+
+  // SHOW AND HIDE CONFIRM PASSWORD
+
+  toggleConfirmPassword.addEventListener('click', function() {
+
+    if (confirmPasswordInput.type === 'password') {
+      confirmPasswordInput.type = 'text';
+      toggleConfirmPassword.textContent = 'Hide';
+    } else {
+      confirmPasswordInput.type = 'password';
+      toggleConfirmPassword.textContent = 'Show';
+    }
+
+  });
 
   form.addEventListener('submit', async function(event) {
 
@@ -345,11 +430,8 @@
     const description =
       document.getElementById('description').value.trim();
 
-    const password =
-      document.getElementById('password').value;
-
-    const confirmPassword =
-      document.getElementById('confirmPassword').value;
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
 
     if (password.length < 8) {
       showMessage(
