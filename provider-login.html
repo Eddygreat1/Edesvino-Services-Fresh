@@ -1,364 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#064e38">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Provider Login | Edesvino Services</title>
+  <title>Provider Login | Edesvino Services</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --green: #064e38;
-    --light-green: #087653;
-    --gold: #d6a62e;
-    --cream: #faf7ed;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: var(--cream);
-    color: #26352e;
-    min-height: 100vh;
-}
-
-header {
-    background: var(--green);
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    color: white;
-}
-
-.logo {
-    font-size: 21px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.logo span {
-    color: var(--gold);
-}
-
-header a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.hero {
-    background: linear-gradient(135deg, #064e38, #087653);
-    color: white;
-    text-align: center;
-    padding: 48px 20px 70px;
-}
-
-.hero h1 {
-    font-size: 29px;
-    margin-bottom: 12px;
-}
-
-.hero p {
-    max-width: 430px;
-    margin: auto;
-    font-size: 15px;
-    line-height: 1.7;
-    color: #e4eee8;
-}
-
-.gold-line {
-    width: 65px;
-    height: 4px;
-    background: var(--gold);
-    margin: 18px auto 0;
-    border-radius: 10px;
-}
-
-.login-container {
-    max-width: 440px;
-    margin: -38px auto 40px;
-    padding: 32px 25px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.09);
-    position: relative;
-}
-
-.login-container h2 {
-    color: var(--green);
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 9px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #777;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 27px;
-}
-
-.field {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--green);
-    margin-bottom: 8px;
-}
-
-input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
-}
-
-input:focus {
-    border-color: var(--light-green);
-    box-shadow: 0 0 0 3px rgba(8,118,83,0.09);
-}
-
-.password-wrap {
-    position: relative;
-}
-
-.password-wrap input {
-    padding-right: 65px;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: transparent;
-    color: var(--light-green);
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.forgot {
-    text-align: right;
-    margin-top: -8px;
-    margin-bottom: 22px;
-}
-
-.forgot a {
-    color: var(--light-green);
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.login-btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    background: var(--gold);
-    color: #173426;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.login-btn:hover {
-    background: #e6b83f;
-}
-
-.register {
-    text-align: center;
-    margin-top: 24px;
-    font-size: 14px;
-    color: #666;
-    line-height: 1.7;
-}
-
-.register a {
-    color: var(--light-green);
-    font-weight: bold;
-    text-decoration: none;
-}
-
-#message {
-    display: none;
-    margin-top: 18px;
-    padding: 13px;
-    background: #fff5dc;
-    color: #72500b;
-    border-radius: 8px;
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-footer {
-    background: var(--green);
-    color: white;
-    text-align: center;
-    padding: 23px 15px;
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-footer span {
-    color: var(--gold);
-}
-
-@media(max-width: 500px) {
-    .login-container {
-        margin-left: 14px;
-        margin-right: 14px;
-        padding: 27px 20px;
+  <style>
+    * {
+      box-sizing: border-box;
     }
 
-    .hero h1 {
-        font-size: 25px;
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #f4f7f6;
+      color: #222;
     }
-}
-</style>
+
+    .container {
+      max-width: 450px;
+      margin: 55px auto;
+      padding: 28px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      color: #087443;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 24px;
+      background: #087443;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #888;
+      cursor: not-allowed;
+    }
+
+    #message {
+      display: none;
+      padding: 14px;
+      margin-top: 18px;
+      border-radius: 7px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .success {
+      display: block !important;
+      background: #e5f7e9;
+      color: #17632b;
+    }
+
+    .error {
+      display: block !important;
+      background: #ffe8e8;
+      color: #a00000;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 22px;
+      line-height: 2;
+    }
+
+    a {
+      color: #087443;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">
-        EDESVINO <span>SERVICES</span>
-    </div>
+<div class="container">
 
-    <a href="index.html">Home</a>
-</header>
+  <h1>Provider Login</h1>
 
-<section class="hero">
-    <h1>Welcome Back, Professional!</h1>
+  <p class="subtitle">
+    Sign in to your Edesvino Services provider account.
+  </p>
 
-    <p>
-        Sign in to manage your service business,
-        connect with customers and grow with Edesvino Services.
-    </p>
+  <form id="loginForm">
 
-    <div class="gold-line"></div>
-</section>
+    <label for="email">Email Address</label>
 
-<main class="login-container">
+    <input
+      type="email"
+      id="email"
+      required
+      autocomplete="email"
+      placeholder="Enter your registered email"
+    >
 
-    <h2>Provider Login</h2>
+    <label for="password">Password</label>
 
-    <p class="subtitle">
-        Access your professional account.
-    </p>
+    <input
+      type="password"
+      id="password"
+      required
+      autocomplete="current-password"
+      placeholder="Enter your password"
+    >
 
-    <form id="loginForm">
+    <button type="submit" id="loginButton">
+      Sign In
+    </button>
 
-        <div class="field">
-            <label for="email">Email Address</label>
+  </form>
 
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter your registered email"
-                autocomplete="email"
-                required>
-        </div>
+  <div id="message"></div>
 
-        <div class="field">
-            <label for="password">Password</label>
-
-            <div class="password-wrap">
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    autocomplete="current-password"
-                    required>
-
-                <button
-                    type="button"
-                    class="toggle-password"
-                    onclick="togglePassword()">
-                    SHOW
-                </button>
-            </div>
-        </div>
-
-        <div class="forgot">
-            <a href="provider-forgot-password.html">
-                Forgot your password?
-            </a>
-        </div>
-
-        <button type="submit" class="login-btn">
-            Sign In to Provider Account
-        </button>
-
-        <div id="message"></div>
-
-    </form>
-
-    <div class="register">
-        Not yet registered as a provider?
-        <br>
-
-        <a href="provider-register.html">
-            Apply to Become a Provider
-        </a>
-    </div>
-
-</main>
-
-<footer>
-    © <span id="year"></span> Edesvino Services.
-    All Rights Reserved.
+  <div class="links">
+    Don't have a provider account?
+    <a href="provider-register.html">Register Here</a>
     <br>
-    Building Opportunities. Connecting People.
-</footer>
+    <a href="index.html">Back to Homepage</a>
+  </div>
 
-<script>
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+</div>
 
-function togglePassword() {
-    const password = document.getElementById("password");
-    const button = document.querySelector(".toggle-password");
+<script type="module">
 
-    if (password.type === "password") {
-        password.type = "text";
-        button.textContent = "HIDE";
-    } else {
-        password.type = "password";
-        button.textContent = "SHOW";
-    }
-}
+  import { createClient } from
+    'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-document.getElementById("loginForm")
-.addEventListener("submit", function(event) {
+  const SUPABASE_URL =
+    'https://dhsfvctmvgmzrnpgxznd.supabase.co';
+
+  const SUPABASE_KEY =
+    'sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm';
+
+  const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const form = document.getElementById('loginForm');
+  const message = document.getElementById('message');
+  const loginButton = document.getElementById('loginButton');
+
+  function showMessage(text, type) {
+    message.textContent = text;
+    message.className = type;
+    message.style.display = 'block';
+  }
+
+  form.addEventListener('submit', async function(event) {
 
     event.preventDefault();
 
-    const message = document.getElementById("message");
+    message.style.display = 'none';
 
-    message.style.display = "block";
+    const email =
+      document.getElementById('email').value.trim().toLowerCase();
 
-    message.textContent =
-        "The provider login page is ready. Secure provider sign-in will be activated after connecting the Edesvino Services authentication system. No login has been performed yet.";
+    const password =
+      document.getElementById('password').value;
 
-});
+    loginButton.disabled = true;
+    loginButton.textContent = 'Signing In...';
+
+    try {
+
+      // Sign in the provider.
+
+      const { data, error } =
+        await supabase.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      const user = data.user;
+
+      if (!user) {
+        throw new Error('Unable to retrieve your account.');
+      }
+
+      // Confirm that this is a provider account.
+
+      const details = user.user_metadata || {};
+
+      if (details.account_type !== 'service_provider') {
+
+        await supabase.auth.signOut();
+
+        throw new Error(
+          'This account is not registered as an Edesvino Services provider account.'
+        );
+
+      }
+
+      // Confirm that registration details exist.
+
+      if (
+        !details.full_name ||
+        !details.phone ||
+        !details.location ||
+        !details.state ||
+        !details.primary_category ||
+        !details.service_description
+      ) {
+        throw new Error(
+          'Your provider registration details are incomplete. Please contact Edesvino support.'
+        );
+      }
+
+      // Check whether this provider already has a database record.
+
+      const { data: existingProvider, error: lookupError } =
+        await supabase
+          .from('service_providers')
+          .select('id, approval_status')
+          .eq('id', user.id)
+          .maybeSingle();
+
+      if (lookupError) {
+        throw lookupError;
+      }
+
+      // Create the provider application only if it does not exist.
+
+      if (!existingProvider) {
+
+        const combinedLocation =
+          details.location + ', ' + details.state;
+
+        const combinedDescription =
+          details.service_description +
+          '\n\nExperience: ' + details.experience;
+
+        const { error: insertError } =
+          await supabase
+            .from('service_providers')
+            .insert({
+
+              id: user.id,
+
+              business_name:
+                details.business_name || details.full_name,
+
+              full_name: details.full_name,
+
+              email: user.email,
+
+              phone: details.phone,
+
+              location: combinedLocation,
+
+              description: combinedDescription,
+
+              primary_category: details.primary_category,
+
+              approval_status: 'pending'
+
+            });
+
+        if (insertError) {
+          throw insertError;
+        }
+
+      }
+
+      showMessage(
+        'Login successful! Your provider account has been connected. Redirecting to your dashboard...',
+        'success'
+      );
+
+      loginButton.textContent = 'Login Successful';
+
+      setTimeout(function() {
+        window.location.href = 'provider-dashboard.html';
+      }, 1800);
+
+    } catch (error) {
+
+      showMessage(
+        error.message || 'Login failed. Please try again.',
+        'error'
+      );
+
+      loginButton.disabled = false;
+      loginButton.textContent = 'Sign In';
+
+    }
+
+  });
+
 </script>
 
 </body>
