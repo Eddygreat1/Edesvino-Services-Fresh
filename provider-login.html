@@ -74,6 +74,22 @@
       cursor: not-allowed;
     }
 
+    .forgot-button {
+      display: block;
+      width: auto;
+      margin: 12px 0 0 auto;
+      padding: 5px 0;
+      background: transparent;
+      color: #087443;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .forgot-button:disabled {
+      background: transparent;
+      color: #888;
+    }
+
     #message {
       display: none;
       padding: 14px;
@@ -140,6 +156,14 @@
       placeholder="Enter your password"
     >
 
+    <button
+      type="button"
+      id="forgotButton"
+      class="forgot-button"
+    >
+      Forgot Password?
+    </button>
+
     <button type="submit" id="loginButton">
       Sign In
     </button>
@@ -176,12 +200,83 @@
   const form = document.getElementById('loginForm');
   const message = document.getElementById('message');
   const loginButton = document.getElementById('loginButton');
+  const forgotButton = document.getElementById('forgotButton');
+  const emailInput = document.getElementById('email');
 
   function showMessage(text, type) {
     message.textContent = text;
     message.className = type;
     message.style.display = 'block';
   }
+
+  // PASSWORD RECOVERY
+
+  forgotButton.addEventListener('click', async function() {
+
+    message.style.display = 'none';
+
+    const email = emailInput.value.trim().toLowerCase();
+
+    if (!email) {
+      showMessage(
+        'Please enter your registered email address first.',
+        'error'
+      );
+      emailInput.focus();
+      return;
+    }
+
+    if (!emailInput.checkValidity()) {
+      showMessage(
+        'Please enter a valid email address.',
+        'error'
+      );
+      emailInput.focus();
+      return;
+    }
+
+    forgotButton.disabled = true;
+    forgotButton.textContent = 'Sending Recovery Email...';
+
+    try {
+
+      const { error } =
+        await supabase.auth.resetPasswordForEmail(email, {
+
+          redirectTo:
+            'https://edesvino-services-fresh.pages.dev/reset-password.html'
+
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      showMessage(
+        'Password recovery email requested successfully. ' +
+        'Please check your inbox and Spam folder. ' +
+        'Open the recovery link to create a new password.',
+        'success'
+      );
+
+    } catch (error) {
+
+      showMessage(
+        error.message || 'Unable to send recovery email. Please try again.',
+        'error'
+      );
+
+    } finally {
+
+      forgotButton.disabled = false;
+      forgotButton.textContent = 'Forgot Password?';
+
+    }
+
+  });
+
+
+  // PROVIDER LOGIN
 
   form.addEventListener('submit', async function(event) {
 
@@ -190,7 +285,7 @@
     message.style.display = 'none';
 
     const email =
-      document.getElementById('email').value.trim().toLowerCase();
+      emailInput.value.trim().toLowerCase();
 
     const password =
       document.getElementById('password').value;
@@ -199,8 +294,6 @@
     loginButton.textContent = 'Signing In...';
 
     try {
-
-      // Sign in the provider.
 
       const { data, error } =
         await supabase.auth.signInWithPassword({
@@ -218,8 +311,6 @@
         throw new Error('Unable to retrieve your account.');
       }
 
-      // Confirm that this is a provider account.
-
       const details = user.user_metadata || {};
 
       if (details.account_type !== 'service_provider') {
@@ -232,8 +323,6 @@
 
       }
 
-      // Confirm that registration details exist.
-
       if (
         !details.full_name ||
         !details.phone ||
@@ -242,12 +331,12 @@
         !details.primary_category ||
         !details.service_description
       ) {
+
         throw new Error(
           'Your provider registration details are incomplete. Please contact Edesvino support.'
         );
-      }
 
-      // Check whether this provider already has a database record.
+      }
 
       const { data: existingProvider, error: lookupError } =
         await supabase
@@ -259,8 +348,6 @@
       if (lookupError) {
         throw lookupError;
       }
-
-      // Create the provider application only if it does not exist.
 
       if (!existingProvider) {
 
