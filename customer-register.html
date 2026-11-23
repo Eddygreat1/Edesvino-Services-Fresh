@@ -4,231 +4,153 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#064e38">
-
 <title>Customer Registration | Edesvino Services</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--green:#064e38;
+--green-light:#087653;
+--gold:#d6a62e;
+--cream:#faf7ed;
+--white:#fff;
+--text:#24332c;
 }
-
-:root {
-    --green: #064e38;
-    --green-light: #087653;
-    --gold: #d6a62e;
-    --cream: #faf7ed;
-    --white: #ffffff;
-    --text: #24332c;
+body{
+font-family:Arial,sans-serif;
+background:var(--cream);
+color:var(--text);
+min-height:100vh;
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
+header{
+background:var(--green);
+padding:20px;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:12px;
 }
-
-header {
-    background: var(--green);
-    padding: 20px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
+.logo{font-size:21px;font-weight:bold;letter-spacing:1px}
+.logo span,footer span{color:var(--gold)}
+header a{color:white;text-decoration:none;font-size:14px}
+.hero{
+background:linear-gradient(135deg,#064e38,#087653);
+color:white;
+text-align:center;
+padding:45px 20px 65px;
 }
-
-.logo {
-    font-size: 21px;
-    font-weight: bold;
-    letter-spacing: 1px;
+.hero h1{font-size:29px;margin-bottom:12px}
+.hero p{
+font-size:15px;
+line-height:1.6;
+max-width:450px;
+margin:auto;
+color:#e4eee8;
 }
-
-.logo span {
-    color: var(--gold);
+.gold-line{
+width:65px;height:4px;
+background:var(--gold);
+margin:18px auto 0;
+border-radius:10px;
 }
-
-header a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
+.form-container{
+max-width:470px;
+background:white;
+margin:-35px auto 35px;
+padding:30px 24px;
+border-radius:16px;
+box-shadow:0 8px 30px rgba(0,0,0,.09);
+position:relative;
 }
-
-.hero {
-    background: linear-gradient(135deg, #064e38, #087653);
-    color: white;
-    text-align: center;
-    padding: 45px 20px 65px;
+.form-container h2{
+text-align:center;
+color:var(--green);
+font-size:23px;
+margin-bottom:8px;
 }
-
-.hero h1 {
-    font-size: 29px;
-    margin-bottom: 12px;
+.subtitle{
+text-align:center;
+color:#777;
+font-size:13px;
+margin-bottom:25px;
+line-height:1.5;
 }
-
-.hero p {
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: 450px;
-    margin: auto;
-    color: #e4eee8;
+label{
+display:block;
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+color:var(--green);
 }
-
-.gold-line {
-    width: 65px;
-    height: 4px;
-    background: var(--gold);
-    margin: 18px auto 0;
-    border-radius: 10px;
+.field{margin-bottom:18px}
+input:not([type=checkbox]){
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:15px;
+outline:none;
+background:#fff;
 }
-
-.form-container {
-    max-width: 470px;
-    background: white;
-    margin: -35px auto 35px;
-    padding: 30px 24px;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.09);
-    position: relative;
+input:focus{
+border-color:var(--green-light);
+box-shadow:0 0 0 3px rgba(8,118,83,.09);
 }
-
-.form-container h2 {
-    text-align: center;
-    color: var(--green);
-    font-size: 23px;
-    margin-bottom: 8px;
+.password-note{color:#777;font-size:12px;margin-top:6px}
+.checkbox{
+display:flex;
+align-items:flex-start;
+gap:9px;
+font-size:13px;
+line-height:1.5;
+margin:20px 0;
 }
-
-.subtitle {
-    text-align: center;
-    color: #777;
-    font-size: 13px;
-    margin-bottom: 25px;
-    line-height: 1.5;
+.checkbox input{width:auto;margin-top:3px}
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:8px;
+background:var(--gold);
+color:#173426;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
 }
-
-label {
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: var(--green);
+button:disabled{opacity:.6;cursor:not-allowed}
+.login-link{
+text-align:center;
+margin-top:22px;
+font-size:14px;
+color:#666;
 }
-
-.field {
-    margin-bottom: 18px;
+.login-link a{
+color:var(--green-light);
+font-weight:bold;
+text-decoration:none;
 }
-
-input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
-    background: #fff;
+#message{
+display:none;
+padding:13px;
+margin-top:18px;
+border-radius:8px;
+font-size:13px;
+line-height:1.6;
 }
-
-input:focus {
-    border-color: var(--green-light);
-    box-shadow: 0 0 0 3px rgba(8,118,83,0.09);
+#message.success{display:block;background:#e7f6ed;color:#126039}
+#message.error{display:block;background:#fff0ed;color:#a12b1d}
+footer{
+text-align:center;
+background:var(--green);
+color:white;
+padding:22px 15px;
+font-size:13px;
 }
-
-.password-note {
-    color: #777;
-    font-size: 12px;
-    margin-top: 6px;
-}
-
-.checkbox {
-    display: flex;
-    align-items: flex-start;
-    gap: 9px;
-    font-size: 13px;
-    line-height: 1.5;
-    margin: 20px 0;
-}
-
-.checkbox input {
-    width: auto;
-    margin-top: 3px;
-}
-
-.checkbox a {
-    color: var(--green-light);
-}
-
-button {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    background: var(--gold);
-    color: #173426;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:hover {
-    background: #e6b83f;
-}
-
-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.login-link {
-    text-align: center;
-    margin-top: 22px;
-    font-size: 14px;
-    color: #666;
-}
-
-.login-link a {
-    color: var(--green-light);
-    font-weight: bold;
-    text-decoration: none;
-}
-
-#message {
-    display: none;
-    padding: 13px;
-    margin-top: 18px;
-    border-radius: 8px;
-    font-size: 13px;
-    line-height: 1.6;
-    background: #fff5dc;
-    color: #72500b;
-}
-
-footer {
-    text-align: center;
-    background: var(--green);
-    color: white;
-    padding: 22px 15px;
-    font-size: 13px;
-}
-
-footer span {
-    color: var(--gold);
-}
-
-@media(max-width: 500px) {
-    .form-container {
-        margin-left: 14px;
-        margin-right: 14px;
-        padding: 25px 19px;
-    }
-
-    .hero h1 {
-        font-size: 25px;
-    }
+@media(max-width:500px){
+.form-container{margin-left:14px;margin-right:14px;padding:25px 19px}
+.hero h1{font-size:25px}
 }
 </style>
 </head>
@@ -236,151 +158,195 @@ footer span {
 <body>
 
 <header>
-    <div class="logo">
-        EDESVINO <span>SERVICES</span>
-    </div>
-
-    <a href="index.html">Home</a>
+<div class="logo">EDESVINO <span>SERVICES</span></div>
+<a href="index.html">Home</a>
 </header>
 
 <section class="hero">
-    <h1>Welcome to Edesvino Services</h1>
-
-    <p>
-        Create your customer account and connect with
-        trusted professionals for your everyday service needs.
-    </p>
-
-    <div class="gold-line"></div>
+<h1>Welcome to Edesvino Services</h1>
+<p>Create your customer account and connect with trusted professionals for your everyday service needs.</p>
+<div class="gold-line"></div>
 </section>
 
 <main class="form-container">
 
-    <h2>Create Your Account</h2>
+<h2>Create Your Account</h2>
 
-    <p class="subtitle">
-        Join Edesvino Services and make finding
-        reliable professionals easier.
-    </p>
+<p class="subtitle">
+Join Edesvino Services and make finding reliable professionals easier.
+</p>
 
-    <form id="registrationForm">
+<form id="registrationForm">
 
-        <div class="field">
-            <label for="fullName">Full Name</label>
-            <input
-                type="text"
-                id="fullName"
-                placeholder="Enter your full name"
-                autocomplete="name"
-                required>
-        </div>
+<div class="field">
+<label for="fullName">Full Name</label>
+<input type="text" id="fullName" placeholder="Enter your full name" autocomplete="name" required>
+</div>
 
-        <div class="field">
-            <label for="email">Email Address</label>
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                autocomplete="email"
-                required>
-        </div>
+<div class="field">
+<label for="email">Email Address</label>
+<input type="email" id="email" placeholder="Enter your email" autocomplete="email" required>
+</div>
 
-        <div class="field">
-            <label for="phone">Phone Number</label>
-            <input
-                type="tel"
-                id="phone"
-                placeholder="Enter your phone number"
-                autocomplete="tel"
-                required>
-        </div>
+<div class="field">
+<label for="phone">Phone Number</label>
+<input type="tel" id="phone" placeholder="Enter your phone number" autocomplete="tel" required>
+</div>
 
-        <div class="field">
-            <label for="password">Create Password</label>
-            <input
-                type="password"
-                id="password"
-                placeholder="Create a password"
-                autocomplete="new-password"
-                minlength="8"
-                required>
+<div class="field">
+<label for="password">Create Password</label>
+<input type="password" id="password" placeholder="Create a password" autocomplete="new-password" minlength="8" required>
+<p class="password-note">Use at least 8 characters.</p>
+</div>
 
-            <p class="password-note">
-                Use at least 8 characters.
-            </p>
-        </div>
+<div class="field">
+<label for="confirmPassword">Confirm Password</label>
+<input type="password" id="confirmPassword" placeholder="Enter your password again" autocomplete="new-password" minlength="8" required>
+</div>
 
-        <div class="field">
-            <label for="confirmPassword">Confirm Password</label>
-            <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Enter your password again"
-                autocomplete="new-password"
-                minlength="8"
-                required>
-        </div>
+<div class="checkbox">
+<input type="checkbox" id="terms" required>
+<span>I agree to the terms and conditions of using Edesvino Services.</span>
+</div>
 
-        <div class="checkbox">
-            <input type="checkbox" id="terms" required>
+<button type="submit" id="submitBtn">Create My Account</button>
 
-            <span>
-                I agree to the terms and conditions
-                of using Edesvino Services.
-            </span>
-        </div>
+<div id="message" role="status" aria-live="polite"></div>
 
-        <button type="submit" id="submitBtn">
-            Create My Account
-        </button>
+</form>
 
-        <div id="message"></div>
-
-    </form>
-
-    <div class="login-link">
-        Already have an account?
-        <a href="customer-login.html">Sign In</a>
-    </div>
+<div class="login-link">
+Already have an account?
+<a href="customer-login.html">Sign In</a>
+</div>
 
 </main>
 
 <footer>
-    © <span id="year"></span> Edesvino Services.
-    All Rights Reserved.
-    <br><br>
-    Building Opportunities. Connecting People.
+© <span id="year"></span> Edesvino Services. All Rights Reserved.
+<br><br>
+Building Opportunities. Connecting People.
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 document.getElementById("year").textContent =
-    new Date().getFullYear();
+new Date().getFullYear();
 
-document.getElementById("registrationForm")
-.addEventListener("submit", function(event) {
+const SUPABASE_URL =
+"https://dhsfvctmvgmzrnpgxznd.supabase.co";
 
-    event.preventDefault();
+const SUPABASE_KEY =
+"sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm";
 
-    const password =
-        document.getElementById("password").value;
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
-    const confirmPassword =
-        document.getElementById("confirmPassword").value;
+const form = document.getElementById("registrationForm");
+const message = document.getElementById("message");
+const button = document.getElementById("submitBtn");
 
-    const message =
-        document.getElementById("message");
+function showMessage(text,type){
+message.textContent = text;
+message.className = type;
+}
 
-    if (password !== confirmPassword) {
-        message.style.display = "block";
-        message.textContent =
-            "Your passwords do not match. Please check and try again.";
-        return;
-    }
+form.addEventListener("submit",async function(event){
 
-    message.style.display = "block";
+event.preventDefault();
 
-    message.textContent =
-        "Your registration page is ready. Account creation will be activated after we connect the secure Edesvino Services database. No account has been created yet.";
+const fullName =
+document.getElementById("fullName").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const phone =
+document.getElementById("phone").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+const confirmPassword =
+document.getElementById("confirmPassword").value;
+
+if(password !== confirmPassword){
+showMessage("Your passwords do not match. Please check and try again.","error");
+return;
+}
+
+if(password.length < 8){
+showMessage("Your password must contain at least 8 characters.","error");
+return;
+}
+
+button.disabled = true;
+button.textContent = "Creating Account...";
+
+try{
+
+const {data,error} =
+await supabaseClient.auth.signUp({
+
+email:email,
+password:password,
+
+options:{
+data:{
+account_type:"customer",
+full_name:fullName,
+phone:phone
+}
+}
+
+});
+
+if(error) throw error;
+
+if(data.user && !data.session){
+
+showMessage(
+"Your registration was submitted successfully. Please check your email and confirm your account before signing in.",
+"success"
+);
+
+form.reset();
+
+}else if(data.user && data.session){
+
+showMessage(
+"Your customer account has been created successfully! You can now sign in.",
+"success"
+);
+
+form.reset();
+
+}else{
+
+showMessage(
+"Registration could not be completed. Please try again.",
+"error"
+);
+
+}
+
+}catch(error){
+
+showMessage(
+error.message || "Something went wrong. Please try again.",
+"error"
+);
+
+}finally{
+
+button.disabled = false;
+button.textContent = "Create My Account";
+
+}
 
 });
 </script>
