@@ -240,6 +240,9 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm";
 
+const CUSTOMER_LOGIN_URL =
+"https://edesvino-services-fresh.pages.dev/customer-login.html";
+
 const supabaseClient =
 window.supabase.createClient(
 SUPABASE_URL,
@@ -296,6 +299,8 @@ email:email,
 password:password,
 
 options:{
+emailRedirectTo:CUSTOMER_LOGIN_URL,
+
 data:{
 account_type:"customer",
 full_name:fullName,
@@ -310,7 +315,7 @@ if(error) throw error;
 if(data.user && !data.session){
 
 showMessage(
-"Your registration was submitted successfully. Please check your email and confirm your account before signing in.",
+"Your registration was submitted successfully. Please check your email and confirm your account. You will be redirected to Customer Login.",
 "success"
 );
 
