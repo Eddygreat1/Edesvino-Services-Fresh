@@ -4,408 +4,236 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#064e38">
-
 <title>Provider Dashboard | Edesvino Services</title>
-
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --green: #064e38;
-    --light-green: #087653;
-    --gold: #d6a62e;
-    --cream: #faf7ed;
-    --white: #ffffff;
-    --text: #25372e;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f3f6f3;
-    color: var(--text);
-}
-
-header {
-    background: var(--green);
-    color: white;
-    padding: 19px 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.logo {
-    font-size: 21px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.logo span {
-    color: var(--gold);
-}
-
-.header-link {
-    color: white;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.hero {
-    background: linear-gradient(120deg, #064e38, #087653);
-    color: white;
-    padding: 35px 22px 55px;
-}
-
-.hero h1 {
-    font-size: 27px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    color: #e0eee6;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.dashboard {
-    max-width: 1100px;
-    margin: -28px auto 40px;
-    padding: 0 18px;
-    position: relative;
-}
-
-.welcome-card {
-    background: white;
-    padding: 23px;
-    border-radius: 13px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.welcome-card h2 {
-    color: var(--green);
-    font-size: 21px;
-    margin-bottom: 7px;
-}
-
-.welcome-card p {
-    font-size: 13px;
-    color: #777;
-}
-
-.status {
-    background: #fff4d6;
-    color: #89640c;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.section-title {
-    color: var(--green);
-    margin: 30px 0 15px;
-    font-size: 19px;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-.stat-card {
-    background: white;
-    padding: 22px 15px;
-    border-radius: 12px;
-    border-bottom: 3px solid var(--gold);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-}
-
-.stat-card .icon {
-    font-size: 25px;
-    margin-bottom: 13px;
-}
-
-.stat-card h3 {
-    color: var(--green);
-    font-size: 23px;
-    margin-bottom: 6px;
-}
-
-.stat-card p {
-    color: #777;
-    font-size: 12px;
-}
-
-.actions {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.action-card {
-    background: white;
-    padding: 21px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: var(--text);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-    border: 1px solid #edf0ed;
-    transition: 0.2s;
-}
-
-.action-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-2px);
-}
-
-.action-card .icon {
-    font-size: 27px;
-    margin-bottom: 12px;
-}
-
-.action-card h3 {
-    color: var(--green);
-    font-size: 16px;
-    margin-bottom: 7px;
-}
-
-.action-card p {
-    color: #777;
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.panel {
-    background: white;
-    padding: 23px;
-    border-radius: 12px;
-    margin-top: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-}
-
-.panel h3 {
-    color: var(--green);
-    margin-bottom: 12px;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 25px 10px;
-    color: #777;
-    line-height: 1.7;
-    font-size: 13px;
-}
-
-.empty-state .icon {
-    font-size: 35px;
-    margin-bottom: 12px;
-}
-
-.notice {
-    background: #fff8e6;
-    border-left: 4px solid var(--gold);
-    padding: 16px;
-    margin-top: 22px;
-    border-radius: 7px;
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-footer {
-    background: var(--green);
-    color: white;
-    text-align: center;
-    padding: 23px;
-    font-size: 13px;
-}
-
-footer span {
-    color: var(--gold);
-}
-
-@media(max-width: 650px) {
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .actions {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        font-size: 23px;
-    }
-}
-
-@media(max-width: 370px) {
-    .stats {
-        grid-template-columns: 1fr;
-    }
-}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#064e38;--light:#087653;--gold:#d6a62e;--text:#25372e}
+body{font-family:Arial,sans-serif;background:#f3f6f3;color:var(--text)}
+header{background:var(--green);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:20px;font-weight:bold;letter-spacing:1px}.logo span{color:var(--gold)}
+.header-actions{display:flex;gap:15px;align-items:center;flex-wrap:wrap}
+.header-actions a,.header-actions button{color:#fff;background:transparent;border:1px solid rgba(255,255,255,.55);border-radius:6px;padding:9px 12px;text-decoration:none;font-size:13px;cursor:pointer}
+.hero{background:linear-gradient(120deg,#064e38,#087653);color:#fff;padding:32px 22px 52px}
+.hero h1{font-size:26px;margin-bottom:9px}.hero p{color:#e0eee6;font-size:14px;line-height:1.6}
+.dashboard{max-width:1000px;margin:-25px auto 40px;padding:0 16px;position:relative}
+.card,.panel{background:#fff;padding:22px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:20px}
+.welcome{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.welcome h2{color:var(--green);font-size:21px;margin-bottom:7px}.muted{color:#68756d;font-size:13px;line-height:1.6}
+.status{display:inline-block;background:#fff2cf;color:#815d08;padding:9px 14px;border-radius:20px;font-size:12px;font-weight:bold}
+.status.approved{background:#e2f6e8;color:#17632b}.status.rejected{background:#ffe8e8;color:#a00000}
+.section-title{color:var(--green);font-size:19px;margin:27px 0 14px}
+.profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.detail{background:#f7f9f7;border-radius:8px;padding:13px;overflow-wrap:anywhere}
+.detail small{display:block;color:#6c786f;font-size:11px;margin-bottom:6px}.detail strong{font-size:14px;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.stat{background:#fff;padding:18px;border-radius:10px;border-bottom:3px solid var(--gold);box-shadow:0 3px 12px rgba(0,0,0,.04)}
+.stat .icon{font-size:23px;margin-bottom:9px}.stat h3{color:var(--green);font-size:17px;margin-bottom:5px}.stat p{font-size:12px;color:#68756d}
+.notice{background:#fff8e6;border-left:4px solid var(--gold);padding:15px;border-radius:7px;font-size:13px;line-height:1.7;margin-top:20px}
+.message{background:#fff;padding:22px;border-radius:12px;line-height:1.7;font-size:14px;box-shadow:0 4px 16px rgba(0,0,0,.05)}
+.message.error{background:#fff0f0;color:#8f1717}.message a{color:var(--green);font-weight:bold}
+.hidden{display:none!important}
+footer{text-align:center;padding:20px;color:#68756d;font-size:12px}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.profile-grid{grid-template-columns:1fr}.hero h1{font-size:23px}}
+@media(max-width:370px){.stats{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
-
 <header>
-    <div class="logo">
-        EDESVINO <span>SERVICES</span>
-    </div>
-
-    <a class="header-link" href="index.html">Back to Home</a>
+  <div class="logo">EDESVINO <span>SERVICES</span></div>
+  <div class="header-actions">
+    <a href="index.html">Home</a>
+    <button id="logoutButton" class="hidden" type="button">Log Out</button>
+  </div>
 </header>
 
 <section class="hero">
-    <h1>Provider Dashboard</h1>
-    <p>
-        Manage your professional services, connect with customers
-        and grow your business with Edesvino.
-    </p>
+  <h1>Provider Dashboard</h1>
+  <p>Your professional account and application information.</p>
 </section>
 
 <main class="dashboard">
+  <div id="loading" class="message">Checking your provider account. Please wait...</div>
 
-    <section class="welcome-card">
-        <div>
-            <h2>Welcome, Professional!</h2>
-            <p>Your service business starts here.</p>
-        </div>
+  <div id="signedOut" class="message hidden">
+    You need to sign in to view your provider dashboard.
+    <br><br><a href="provider-login.html">Go to Provider Login</a>
+  </div>
 
-        <div class="status">
-            Application status: Not connected
-        </div>
+  <div id="errorBox" class="message error hidden"></div>
+
+  <div id="dashboardContent" class="hidden">
+    <section class="card welcome">
+      <div>
+        <h2 id="welcomeName">Welcome</h2>
+        <p class="muted">Here is the information saved in your provider application.</p>
+      </div>
+      <div id="approvalStatus" class="status">Application status: Checking...</div>
+    </section>
+
+    <h2 class="section-title">Your Provider Profile</h2>
+
+    <section class="card profile-grid">
+      <div class="detail"><small>Full name</small><strong id="fullName">—</strong></div>
+      <div class="detail"><small>Business / trading name</small><strong id="businessName">—</strong></div>
+      <div class="detail"><small>Email address</small><strong id="email">—</strong></div>
+      <div class="detail"><small>Phone number</small><strong id="phone">—</strong></div>
+      <div class="detail"><small>Service category</small><strong id="category">—</strong></div>
+      <div class="detail"><small>Location</small><strong id="location">—</strong></div>
+      <div class="detail" style="grid-column:1/-1"><small>Service description</small><strong id="description">—</strong></div>
     </section>
 
     <h2 class="section-title">Your Overview</h2>
 
     <section class="stats">
-
-        <div class="stat-card">
-            <div class="icon">📩</div>
-            <h3>—</h3>
-            <p>New Job Requests</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="icon">🔧</div>
-            <h3>—</h3>
-            <p>Active Jobs</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="icon">✅</div>
-            <h3>—</h3>
-            <p>Completed Jobs</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="icon">💰</div>
-            <h3>—</h3>
-            <p>Total Earnings</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="icon">⭐</div>
-            <h3>—</h3>
-            <p>Customer Rating</p>
-        </div>
-
-        <div class="stat-card">
-            <div class="icon">👤</div>
-            <h3>—</h3>
-            <p>Profile Status</p>
-        </div>
-
+      <div class="stat"><div class="icon">📩</div><h3>Coming soon</h3><p>New job requests</p></div>
+      <div class="stat"><div class="icon">🔧</div><h3>Coming soon</h3><p>Active jobs</p></div>
+      <div class="stat"><div class="icon">✅</div><h3>Coming soon</h3><p>Completed jobs</p></div>
+      <div class="stat"><div class="icon">💰</div><h3>Coming soon</h3><p>Earnings</p></div>
+      <div class="stat"><div class="icon">⭐</div><h3>Coming soon</h3><p>Customer rating</p></div>
+      <div class="stat"><div class="icon">👤</div><h3 id="profileStatus">—</h3><p>Profile approval</p></div>
     </section>
 
-    <h2 class="section-title">Manage Your Business</h2>
-
-    <section class="actions">
-
-        <a href="provider-register.html" class="action-card">
-            <div class="icon">👨‍🔧</div>
-            <h3>Provider Profile</h3>
-            <p>Register your professional details and services.</p>
-        </a>
-
-        <a href="provider-login.html" class="action-card">
-            <div class="icon">🔐</div>
-            <h3>Provider Account</h3>
-            <p>Access your provider login page.</p>
-        </a>
-
-        <a href="book-service.html" class="action-card">
-            <div class="icon">📋</div>
-            <h3>View Booking Page</h3>
-            <p>Explore the customer service booking page.</p>
-        </a>
-
-        <a href="index.html" class="action-card">
-            <div class="icon">🏠</div>
-            <h3>Marketplace Home</h3>
-            <p>Return to the Edesvino Services homepage.</p>
-        </a>
-
+    <section class="notice" id="statusNotice">
+      Your application status is shown above.
     </section>
 
-    <section class="panel">
-        <h3>Recent Job Requests</h3>
-
-        <div class="empty-state">
-            <div class="icon">📭</div>
-            <p>
-                No job requests are displayed yet.
-                Customer requests will appear here
-                after the booking system is connected.
-            </p>
-        </div>
+    <section class="notice">
+      <strong>Booking and earnings features are still being built.</strong><br>
+      Job requests, completed jobs, ratings and earnings are not connected yet. These figures will only appear when the booking and provider operations systems are ready.
     </section>
-
-    <section class="panel">
-        <h3>Recent Activities</h3>
-
-        <div class="empty-state">
-            <div class="icon">📊</div>
-            <p>
-                Your completed jobs, earnings and account
-                activities will appear here once your account
-                is connected.
-            </p>
-        </div>
-    </section>
-
-    <div class="notice">
-        <strong>Welcome to Edesvino Services!</strong><br>
-        Provider accounts will require registration, owner approval
-        and secure authentication before professionals can receive
-        customer job requests.
-    </div>
-
+  </div>
 </main>
 
 <footer>
-    © <span id="year"></span> Edesvino Services.
-    All Rights Reserved.
-    <br><br>
-    Building Opportunities. Connecting People.
+  © <span id="year"></span> Edesvino Services. All Rights Reserved.
+  <br><br>Building Opportunities. Connecting People.
 </footer>
 
-<script>
-document.getElementById("year").textContent =
-    new Date().getFullYear();
-</script>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
+const SUPABASE_URL = 'https://dhsfvctmvgmzrnpgxznd.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const loading = document.getElementById('loading');
+const signedOut = document.getElementById('signedOut');
+const errorBox = document.getElementById('errorBox');
+const dashboardContent = document.getElementById('dashboardContent');
+const logoutButton = document.getElementById('logoutButton');
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function showError(message) {
+  loading.classList.add('hidden');
+  dashboardContent.classList.add('hidden');
+  errorBox.textContent = message;
+  errorBox.classList.remove('hidden');
+}
+
+function displayValue(value) {
+  return value && String(value).trim() ? String(value) : 'Not provided';
+}
+
+async function loadProviderDashboard() {
+  try {
+    const { data: sessionData, error: sessionError } =
+      await supabase.auth.getSession();
+
+    if (sessionError) throw sessionError;
+
+    const user = sessionData.session?.user;
+
+    if (!user) {
+      loading.classList.add('hidden');
+      signedOut.classList.remove('hidden');
+      return;
+    }
+
+    logoutButton.classList.remove('hidden');
+
+    const metadata = user.user_metadata || {};
+
+    if (metadata.account_type &&
+        metadata.account_type !== 'service_provider') {
+      await supabase.auth.signOut();
+      showError('This account is not registered as an Edesvino Services provider account. Please sign in with your provider account.');
+      return;
+    }
+
+    const { data: provider, error: providerError } = await supabase
+      .from('service_providers')
+      .select('id, full_name, business_name, email, phone, location, description, primary_category, approval_status')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (providerError) throw providerError;
+
+    if (!provider) {
+      showError('We could not find a provider application linked to this login. Please return to Provider Login. Do not register again unless the support team confirms it is necessary.');
+      return;
+    }
+
+    const name = provider.full_name || metadata.full_name || 'Service Provider';
+    const status = String(provider.approval_status || 'pending').toLowerCase();
+
+    document.getElementById('welcomeName').textContent = 'Welcome, ' + name + '!';
+    document.getElementById('fullName').textContent = displayValue(provider.full_name || metadata.full_name);
+    document.getElementById('businessName').textContent = displayValue(provider.business_name || metadata.business_name);
+    document.getElementById('email').textContent = displayValue(provider.email || user.email);
+    document.getElementById('phone').textContent = displayValue(provider.phone || metadata.phone);
+    document.getElementById('category').textContent = displayValue(provider.primary_category || metadata.primary_category);
+    document.getElementById('location').textContent = displayValue(provider.location || [metadata.location, metadata.state].filter(Boolean).join(', '));
+    document.getElementById('description').textContent = displayValue(provider.description || metadata.service_description);
+
+    const statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
+    const statusElement = document.getElementById('approvalStatus');
+
+    statusElement.textContent = 'Application status: ' + statusLabel;
+
+    if (status === 'approved') statusElement.classList.add('approved');
+    if (status === 'rejected') statusElement.classList.add('rejected');
+
+    document.getElementById('profileStatus').textContent = statusLabel;
+
+    const notice = document.getElementById('statusNotice');
+
+    if (status === 'approved') {
+      notice.textContent = 'Your provider application is approved. Booking and job-management features are still being built and are not active yet.';
+    } else if (status === 'rejected') {
+      notice.textContent = 'Your provider application is currently marked as rejected. Please contact Edesvino Services for clarification.';
+    } else {
+      notice.textContent = 'Your application is Pending review. This is normal after registration. You will be able to receive customer bookings only after approval and when the booking system is ready.';
+    }
+
+    loading.classList.add('hidden');
+    dashboardContent.classList.remove('hidden');
+
+  } catch (error) {
+    console.error('Provider dashboard error:', error);
+
+    showError('We could not load your provider details right now. Please check your internet connection and try again. If the problem continues, contact Edesvino support. Details: ' + (error.message || 'Unknown error'));
+  }
+}
+
+logoutButton.addEventListener('click', async function() {
+  logoutButton.disabled = true;
+  logoutButton.textContent = 'Logging out...';
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    logoutButton.disabled = false;
+    logoutButton.textContent = 'Log Out';
+    alert('Unable to log out right now. Please try again.');
+    return;
+  }
+
+  window.location.href = 'provider-login.html';
+});
+
+loadProviderDashboard();
+</script>
 </body>
 </html>
