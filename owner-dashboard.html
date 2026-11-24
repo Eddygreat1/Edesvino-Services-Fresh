@@ -3,899 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Owner Dashboard | Edesvino Services</title>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
+<title>Owner Access Diagnostic | Edesvino Services</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
-:root {
-    --green: #064e3b;
-    --deep: #022c22;
-    --gold: #d4ad55;
-    --cream: #faf7ef;
-    --white: #ffffff;
-    --text: #24352e;
-    --muted: #84918a;
-    --border: #e8ece7;
-    --red: #b42318;
+body {
+    font-family: Arial, sans-serif;
+    background: #faf7ef;
+    padding: 25px;
+    color: #24352e;
 }
-
-* {
-    margin: 0;
-    padding: 0;
+.box {
+    max-width: 450px;
+    margin: 35px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+input, button {
+    width: 100%;
+    padding: 13px;
+    margin: 9px 0;
     box-sizing: border-box;
 }
-
-body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-}
-
-header {
-    background: linear-gradient(120deg, var(--deep), var(--green));
-    color: white;
-    padding: 22px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 25px;
-    font-weight: 700;
-}
-
-.brand span {
-    color: var(--gold);
-}
-
-.owner-label {
-    font-size: 12px;
-    color: #e8d6a7;
-    margin-top: 5px;
-    letter-spacing: 1px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.header-badge {
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 9px 15px;
-    border-radius: 25px;
-    font-size: 12px;
-}
-
 button {
-    cursor: pointer;
-    font-family: inherit;
-}
-
-.logout-btn {
-    background: transparent;
-    border: 1px solid white;
+    background: #064e3b;
     color: white;
-    padding: 9px 15px;
-    border-radius: 8px;
+    border: 0;
+    border-radius: 7px;
 }
-
-.container {
-    width: 90%;
-    max-width: 1250px;
-    margin: 35px auto;
-}
-
-.welcome {
-    margin-bottom: 25px;
-}
-
-.welcome h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    color: var(--green);
-    margin-bottom: 8px;
-}
-
-.welcome p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-.notice {
-    background: #fff8e7;
-    border: 1px solid #ead9a9;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 25px;
-    font-size: 13px;
-    line-height: 1.6;
-    color: #72591e;
-}
-
-.section-title {
-    color: var(--green);
-    font-size: 18px;
-    margin: 28px 0 15px;
-    font-weight: 700;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 17px;
-}
-
-.card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.025);
-}
-
-.stat-icon {
-    font-size: 25px;
-    margin-bottom: 15px;
-}
-
-.stat-label {
-    font-size: 13px;
-    color: var(--muted);
-}
-
-.stat-number {
-    font-size: 27px;
-    color: var(--green);
-    font-weight: 700;
-    margin-top: 8px;
-}
-
-.panel {
-    background: white;
-    border-radius: 16px;
-    padding: 22px;
-    border: 1px solid var(--border);
-    margin-top: 25px;
-}
-
-.panel h2 {
-    color: var(--green);
-    font-size: 18px;
-    margin-bottom: 12px;
-}
-
-.panel-description {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 18px;
-}
-
-.provider-list {
-    display: grid;
-    gap: 15px;
-}
-
-.provider-card {
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    padding: 18px;
-    background: #fff;
-}
-
-.provider-card h3 {
-    color: var(--green);
-    font-size: 17px;
-    margin-bottom: 7px;
-}
-
-.provider-info {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.9;
+#result {
     overflow-wrap: anywhere;
-}
-
-.status {
-    display: inline-block;
-    padding: 6px 11px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    margin: 12px 0;
-    text-transform: uppercase;
-}
-
-.status-pending {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status-approved {
-    background: #d1fae5;
-    color: #065f46;
-}
-
-.status-rejected {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.provider-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-    margin-top: 10px;
-}
-
-.action-btn {
-    border: none;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.approve-btn {
-    background: var(--green);
-    color: white;
-}
-
-.reject-btn {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.pending-btn {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.action-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.message {
-    padding: 13px;
-    border-radius: 9px;
-    font-size: 13px;
-    margin-bottom: 15px;
-    display: none;
-    line-height: 1.6;
-}
-
-.message.error {
-    display: block;
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.message.success {
-    display: block;
-    background: #d1fae5;
-    color: #065f46;
-}
-
-.loading {
-    color: var(--muted);
-    font-size: 13px;
-    padding: 15px 0;
-}
-
-.empty {
-    background: #f7faf7;
-    padding: 20px;
-    border-radius: 10px;
-    color: var(--muted);
-    font-size: 13px;
-    text-align: center;
-}
-
-.login-box {
-    max-width: 430px;
-    margin: 65px auto;
-    background: white;
-    padding: 28px;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
-}
-
-.login-box h1 {
-    color: var(--green);
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 10px;
-}
-
-.login-box p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.login-box input {
-    width: 100%;
-    padding: 13px;
-    margin-bottom: 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    line-height: 1.7;
     font-size: 14px;
-}
-
-.login-btn {
-    width: 100%;
-    background: var(--green);
-    color: white;
-    border: none;
-    padding: 13px;
-    border-radius: 8px;
-    font-weight: 700;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.quick-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.quick-links a {
-    text-decoration: none;
-    background: var(--green);
-    color: white;
-    padding: 11px 15px;
-    border-radius: 9px;
-    font-size: 12px;
-}
-
-footer {
-    text-align: center;
-    padding: 30px 15px;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-footer span {
-    color: var(--gold);
-}
-
-@media(max-width: 850px) {
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media(max-width: 520px) {
-    .container {
-        width: 92%;
-    }
-
-    .welcome h1 {
-        font-size: 25px;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    header {
-        padding: 22px 5%;
-    }
 }
 </style>
 </head>
-
 <body>
 
-<header>
-    <div>
-        <div class="brand">EDESVINO <span>SERVICES</span></div>
-        <div class="owner-label">PLATFORM OWNER CONTROL CENTRE</div>
-    </div>
-
-    <div class="header-right">
-        <div class="header-badge">OWNER DASHBOARD</div>
-        <button id="logoutBtn" class="logout-btn hidden">Logout</button>
-    </div>
-</header>
-
-<section id="loginSection" class="login-box">
-    <h1>Owner Login</h1>
-    <p>Sign in with your authorised Edesvino Services owner account.</p>
-
-    <div id="loginMessage" class="message"></div>
+<div class="box">
+    <h2>EDESVINO SERVICES</h2>
+    <h3>Owner Access Diagnostic</h3>
 
     <form id="loginForm">
-        <input
-            type="email"
-            id="ownerEmail"
-            placeholder="Owner email address"
-            required
-        >
+        <input type="email" id="email"
+        placeholder="Owner email" required>
 
-        <input
-            type="password"
-            id="ownerPassword"
-            placeholder="Password"
-            required
-        >
+        <input type="password" id="password"
+        placeholder="Password" required>
 
-        <button type="submit" id="loginBtn" class="login-btn">
-            Sign In
-        </button>
+        <button type="submit">Check Owner Access</button>
     </form>
-</section>
 
-<main id="dashboardSection" class="container hidden">
-
-    <section class="welcome">
-        <h1>Welcome, Platform Owner</h1>
-        <p>Manage your service marketplace and monitor provider applications.</p>
-    </section>
-
-    <div class="notice">
-        <strong>Owner control centre:</strong>
-        Your account has been verified. Provider application records below
-        are loaded directly from the Edesvino Services database.
-    </div>
-
-    <div id="dashboardMessage" class="message"></div>
-
-    <h2 class="section-title">Provider Overview</h2>
-
-    <section class="stats">
-
-        <div class="card">
-            <div class="stat-icon">🛠️</div>
-            <div class="stat-label">Total Providers</div>
-            <div class="stat-number" id="totalProviders">0</div>
-            <div class="stat-note">Registered provider applications</div>
-        </div>
-
-        <div class="card">
-            <div class="stat-icon">⏳</div>
-            <div class="stat-label">Pending Applications</div>
-            <div class="stat-number" id="pendingProviders">0</div>
-            <div class="stat-note">Awaiting owner review</div>
-        </div>
-
-        <div class="card">
-            <div class="stat-icon">✅</div>
-            <div class="stat-label">Approved Providers</div>
-            <div class="stat-number" id="approvedProviders">0</div>
-            <div class="stat-note">Approved to join the platform</div>
-        </div>
-
-        <div class="card">
-            <div class="stat-icon">❌</div>
-            <div class="stat-label">Rejected Applications</div>
-            <div class="stat-number" id="rejectedProviders">0</div>
-            <div class="stat-note">Not approved</div>
-        </div>
-
-    </section>
-
-    <section class="panel" id="applications">
-        <h2>Provider Applications</h2>
-
-        <p class="panel-description">
-            Review service provider applications. Approving an application
-            changes its status to Approved. Rejecting an application changes
-            its status to Rejected.
-        </p>
-
-        <div id="providerList" class="loading">
-            Loading provider applications...
-        </div>
-    </section>
-
-    <section class="panel">
-        <h2>Other Management Areas</h2>
-
-        <p class="panel-description">
-            These areas will be connected as their database features are
-            completed and tested. No unverified financial figures are shown.
-        </p>
-
-        <div class="quick-links">
-            <a href="index.html">Visit Homepage</a>
-            <a href="provider-dashboard.html">Provider Dashboard</a>
-            <a href="book-service.html">Customer Bookings</a>
-            <a href="customer-register.html">Customer Registration</a>
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    © 2026 <span>Edesvino Services</span>.
-    Building Opportunities. Connecting Professionals.
-</footer>
+    <div id="result">Please sign in to begin the check.</div>
+</div>
 
 <script>
-const SUPABASE_URL = 'https://dhsfvctmvgmzrnpgxznd.supabase.co';
-
-const SUPABASE_KEY =
-    'sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm';
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+const client = window.supabase.createClient(
+    'https://dhsfvctmvgmzrnpgxznd.supabase.co',
+    'sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm'
 );
 
-const loginSection = document.getElementById('loginSection');
-const dashboardSection = document.getElementById('dashboardSection');
-const loginForm = document.getElementById('loginForm');
-const loginBtn = document.getElementById('loginBtn');
-const logoutBtn = document.getElementById('logoutBtn');
-const loginMessage = document.getElementById('loginMessage');
-const dashboardMessage = document.getElementById('dashboardMessage');
-const providerList = document.getElementById('providerList');
+document.getElementById('loginForm').addEventListener(
+    'submit', async function(event) {
 
-function showMessage(element, message, type) {
-    element.textContent = message;
-    element.className = 'message ' + type;
-}
-
-function clearMessage(element) {
-    element.textContent = '';
-    element.className = 'message';
-}
-
-function escapeHTML(value) {
-    return String(value ?? '').replace(/[&<>"']/g, function(character) {
-        return {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        }[character];
-    });
-}
-
-function showLogin() {
-    loginSection.classList.remove('hidden');
-    dashboardSection.classList.add('hidden');
-    logoutBtn.classList.add('hidden');
-}
-
-function showDashboard() {
-    loginSection.classList.add('hidden');
-    dashboardSection.classList.remove('hidden');
-    logoutBtn.classList.remove('hidden');
-}
-
-async function verifyOwner(user) {
-    if (!user) {
-        return false;
-    }
-
-    const { data, error } = await supabaseClient
-        .from('platform_admins')
-        .select('user_id')
-        .eq('user_id', user.id)
-        .maybeSingle();
-
-    if (error) {
-        throw error;
-    }
-
-    return !!data;
-}
-
-async function loadDashboard(user) {
-    showDashboard();
-
-    clearMessage(dashboardMessage);
-
-    const { data: providers, error } = await supabaseClient
-        .from('service_providers')
-        .select(`
-            id,
-            full_name,
-            business_name,
-            email,
-            approval_status,
-            created_at
-        `)
-        .order('created_at', { ascending: false });
-
-    if (error) {
-        providerList.textContent =
-            'Unable to load provider applications. ' + error.message;
-
-        showMessage(
-            dashboardMessage,
-            'There was a problem loading provider records. Please check the database permissions.',
-            'error'
-        );
-
-        return;
-    }
-
-    const records = providers || [];
-
-    const pending = records.filter(
-        provider => provider.approval_status === 'pending'
-    ).length;
-
-    const approved = records.filter(
-        provider => provider.approval_status === 'approved'
-    ).length;
-
-    const rejected = records.filter(
-        provider => provider.approval_status === 'rejected'
-    ).length;
-
-    document.getElementById('totalProviders').textContent = records.length;
-    document.getElementById('pendingProviders').textContent = pending;
-    document.getElementById('approvedProviders').textContent = approved;
-    document.getElementById('rejectedProviders').textContent = rejected;
-
-    if (records.length === 0) {
-        providerList.innerHTML =
-            '<div class="empty">No provider applications have been submitted yet.</div>';
-        return;
-    }
-
-    providerList.innerHTML = records.map(provider => {
-        const status = provider.approval_status || 'pending';
-
-        const date = provider.created_at
-            ? new Date(provider.created_at).toLocaleString()
-            : 'Date unavailable';
-
-        let statusClass = 'status-pending';
-
-        if (status === 'approved') {
-            statusClass = 'status-approved';
-        } else if (status === 'rejected') {
-            statusClass = 'status-rejected';
-        }
-
-        let buttons = '';
-
-        if (status !== 'approved') {
-            buttons += `
-                <button
-                    class="action-btn approve-btn"
-                    data-id="${escapeHTML(provider.id)}"
-                    data-status="approved">
-                    Approve
-                </button>
-            `;
-        }
-
-        if (status !== 'rejected') {
-            buttons += `
-                <button
-                    class="action-btn reject-btn"
-                    data-id="${escapeHTML(provider.id)}"
-                    data-status="rejected">
-                    Reject
-                </button>
-            `;
-        }
-
-        if (status !== 'pending') {
-            buttons += `
-                <button
-                    class="action-btn pending-btn"
-                    data-id="${escapeHTML(provider.id)}"
-                    data-status="pending">
-                    Set Pending
-                </button>
-            `;
-        }
-
-        return `
-            <article class="provider-card">
-                <h3>${escapeHTML(provider.full_name)}</h3>
-
-                <div class="provider-info">
-                    <strong>Business:</strong>
-                    ${escapeHTML(provider.business_name || 'Not provided')}
-                    <br>
-
-                    <strong>Email:</strong>
-                    ${escapeHTML(provider.email || 'Not provided')}
-                    <br>
-
-                    <strong>Application date:</strong>
-                    ${escapeHTML(date)}
-                </div>
-
-                <span class="status ${statusClass}">
-                    ${escapeHTML(status)}
-                </span>
-
-                <div class="provider-actions">
-                    ${buttons}
-                </div>
-            </article>
-        `;
-    }).join('');
-
-    providerList.querySelectorAll('button[data-id]').forEach(button => {
-        button.addEventListener('click', async function() {
-            await updateProviderStatus(
-                this.dataset.id,
-                this.dataset.status,
-                this
-            );
-        });
-    });
-}
-
-async function updateProviderStatus(providerId, newStatus, button) {
-    const action = newStatus.charAt(0).toUpperCase() +
-        newStatus.slice(1);
-
-    const confirmed = confirm(
-        'Are you sure you want to set this provider application to ' +
-        action + '?'
-    );
-
-    if (!confirmed) {
-        return;
-    }
-
-    const buttons = providerList.querySelectorAll('button');
-    buttons.forEach(item => item.disabled = true);
-
-    clearMessage(dashboardMessage);
-
-    const { error } = await supabaseClient.rpc(
-        'set_provider_approval',
-        {
-            p_provider_id: providerId,
-            p_new_status: newStatus
-        }
-    );
-
-    if (error) {
-        showMessage(
-            dashboardMessage,
-            'The application status could not be updated: ' + error.message,
-            'error'
-        );
-
-        buttons.forEach(item => item.disabled = false);
-        return;
-    }
-
-    showMessage(
-        dashboardMessage,
-        'Provider application successfully updated to ' + action + '.',
-        'success'
-    );
-
-    await loadDashboard();
-}
-
-loginForm.addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    clearMessage(loginMessage);
+    const result = document.getElementById('result');
+    result.innerHTML = 'Checking account...';
 
-    loginBtn.disabled = true;
-    loginBtn.textContent = 'Signing in...';
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
 
-    const email = document.getElementById('ownerEmail').value.trim();
-    const password = document.getElementById('ownerPassword').value;
-
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
+    const { data, error } = await client.auth.signInWithPassword({
         email,
         password
     });
 
     if (error) {
-        showMessage(
-            loginMessage,
-            'Login failed: ' + error.message,
-            'error'
-        );
-
-        loginBtn.disabled = false;
-        loginBtn.textContent = 'Sign In';
+        result.innerHTML = 'LOGIN ERROR: ' + error.message;
         return;
     }
 
-    try {
-        const authorised = await verifyOwner(data.user);
+    const user = data.user;
 
-        if (!authorised) {
-            await supabaseClient.auth.signOut();
+    result.innerHTML =
+        '<h3>Login successful</h3>' +
+        '<b>Signed-in email:</b><br>' +
+        user.email + '<br><br>' +
+        '<b>Signed-in user ID:</b><br>' +
+        user.id + '<br><br>' +
+        'Checking owner record...';
 
-            showMessage(
-                loginMessage,
-                'Access denied. This account is not authorised as a platform owner.',
-                'error'
-            );
+    const { data: admin, error: adminError } = await client
+        .from('platform_admins')
+        .select('user_id')
+        .eq('user_id', user.id)
+        .maybeSingle();
 
-            loginBtn.disabled = false;
-            loginBtn.textContent = 'Sign In';
-            return;
-        }
-
-        await loadDashboard(data.user);
-
-    } catch (error) {
-        showMessage(
-            loginMessage,
-            'Owner verification failed: ' + error.message,
-            'error'
-        );
-
-        await supabaseClient.auth.signOut();
-    }
-
-    loginBtn.disabled = false;
-    loginBtn.textContent = 'Sign In';
-});
-
-logoutBtn.addEventListener('click', async function() {
-    await supabaseClient.auth.signOut();
-    showLogin();
-    clearMessage(loginMessage);
-});
-
-async function initialiseDashboard() {
-    const { data, error } = await supabaseClient.auth.getSession();
-
-    if (error || !data.session) {
-        showLogin();
+    if (adminError) {
+        result.innerHTML +=
+            '<br><br><b>DATABASE ERROR:</b><br>' +
+            adminError.message;
         return;
     }
 
-    try {
-        const authorised = await verifyOwner(data.session.user);
-
-        if (!authorised) {
-            await supabaseClient.auth.signOut();
-            showLogin();
-
-            showMessage(
-                loginMessage,
-                'Access denied. This account is not authorised as a platform owner.',
-                'error'
-            );
-
-            return;
-        }
-
-        await loadDashboard(data.session.user);
-
-    } catch (error) {
-        showLogin();
-
-        showMessage(
-            loginMessage,
-            'Unable to verify owner access: ' + error.message,
-            'error'
-        );
+    if (admin) {
+        result.innerHTML +=
+            '<br><br><b style="color:green">OWNER VERIFIED SUCCESSFULLY</b>';
+    } else {
+        result.innerHTML +=
+            '<br><br><b style="color:red">OWNER RECORD NOT FOUND FOR THIS USER ID</b>';
     }
-}
-
-initialiseDashboard();
+});
 </script>
 
 </body>
