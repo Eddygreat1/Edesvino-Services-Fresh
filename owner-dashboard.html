@@ -7,6 +7,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 :root {
     --green: #064e3b;
@@ -17,6 +19,7 @@
     --text: #24352e;
     --muted: #84918a;
     --border: #e8ece7;
+    --red: #b42318;
 }
 
 * {
@@ -34,7 +37,7 @@ body {
 header {
     background: linear-gradient(120deg, var(--deep), var(--green));
     color: white;
-    padding: 25px 6%;
+    padding: 22px 6%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,12 +62,32 @@ header {
     letter-spacing: 1px;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
 .header-badge {
     border: 1px solid var(--gold);
     color: var(--gold);
     padding: 9px 15px;
     border-radius: 25px;
     font-size: 12px;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 8px;
 }
 
 .container {
@@ -138,50 +161,6 @@ header {
     margin-top: 8px;
 }
 
-.stat-note {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 7px;
-}
-
-.actions {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 17px;
-}
-
-.action-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 22px;
-    text-decoration: none;
-    color: var(--text);
-    transition: 0.2s;
-}
-
-.action-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-3px);
-}
-
-.action-icon {
-    font-size: 27px;
-    margin-bottom: 13px;
-}
-
-.action-card h3 {
-    font-size: 15px;
-    color: var(--green);
-    margin-bottom: 7px;
-}
-
-.action-card p {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-}
-
 .panel {
     background: white;
     border-radius: 16px;
@@ -192,14 +171,182 @@ header {
 
 .panel h2 {
     color: var(--green);
-    font-size: 17px;
+    font-size: 18px;
     margin-bottom: 12px;
 }
 
-.panel p {
+.panel-description {
     font-size: 13px;
     color: var(--muted);
     line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.provider-list {
+    display: grid;
+    gap: 15px;
+}
+
+.provider-card {
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 18px;
+    background: #fff;
+}
+
+.provider-card h3 {
+    color: var(--green);
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.provider-info {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 12px 0;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-approved {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.provider-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 10px;
+}
+
+.action-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.approve-btn {
+    background: var(--green);
+    color: white;
+}
+
+.reject-btn {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.pending-btn {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.message {
+    padding: 13px;
+    border-radius: 9px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    display: none;
+    line-height: 1.6;
+}
+
+.message.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.message.success {
+    display: block;
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.loading {
+    color: var(--muted);
+    font-size: 13px;
+    padding: 15px 0;
+}
+
+.empty {
+    background: #f7faf7;
+    padding: 20px;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.login-box {
+    max-width: 430px;
+    margin: 65px auto;
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+}
+
+.login-box h1 {
+    color: var(--green);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.login-btn {
+    width: 100%;
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .quick-links {
@@ -218,10 +365,6 @@ header {
     font-size: 12px;
 }
 
-.quick-links a:hover {
-    background: var(--deep);
-}
-
 footer {
     text-align: center;
     padding: 30px 15px;
@@ -237,10 +380,6 @@ footer span {
     .stats {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    .actions {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 @media(max-width: 520px) {
@@ -252,7 +391,7 @@ footer span {
         font-size: 25px;
     }
 
-    .stats, .actions {
+    .stats {
         grid-template-columns: 1fr;
     }
 
@@ -270,129 +409,494 @@ footer span {
         <div class="brand">EDESVINO <span>SERVICES</span></div>
         <div class="owner-label">PLATFORM OWNER CONTROL CENTRE</div>
     </div>
-    <div class="header-badge">OWNER DASHBOARD</div>
+
+    <div class="header-right">
+        <div class="header-badge">OWNER DASHBOARD</div>
+        <button id="logoutBtn" class="logout-btn hidden">Logout</button>
+    </div>
 </header>
 
-<main class="container">
+<section id="loginSection" class="login-box">
+    <h1>Owner Login</h1>
+    <p>Sign in with your authorised Edesvino Services owner account.</p>
+
+    <div id="loginMessage" class="message"></div>
+
+    <form id="loginForm">
+        <input
+            type="email"
+            id="ownerEmail"
+            placeholder="Owner email address"
+            required
+        >
+
+        <input
+            type="password"
+            id="ownerPassword"
+            placeholder="Password"
+            required
+        >
+
+        <button type="submit" id="loginBtn" class="login-btn">
+            Sign In
+        </button>
+    </form>
+</section>
+
+<main id="dashboardSection" class="container hidden">
 
     <section class="welcome">
         <h1>Welcome, Platform Owner</h1>
-        <p>Manage your service marketplace and monitor its operations from one place.</p>
+        <p>Manage your service marketplace and monitor provider applications.</p>
     </section>
 
     <div class="notice">
-        <strong>Dashboard preview:</strong> Your control centre design is ready.
-        Live customer records, provider applications, bookings and financial
-        figures will appear after we connect the separate Edesvino Services
-        database and secure owner authentication.
+        <strong>Owner control centre:</strong>
+        Your account has been verified. Provider application records below
+        are loaded directly from the Edesvino Services database.
     </div>
 
-    <h2 class="section-title">Platform Overview</h2>
+    <div id="dashboardMessage" class="message"></div>
+
+    <h2 class="section-title">Provider Overview</h2>
 
     <section class="stats">
 
         <div class="card">
-            <div class="stat-icon">👥</div>
-            <div class="stat-label">Registered Customers</div>
-            <div class="stat-number">—</div>
-            <div class="stat-note">Awaiting database connection</div>
-        </div>
-
-        <div class="card">
             <div class="stat-icon">🛠️</div>
-            <div class="stat-label">Service Providers</div>
-            <div class="stat-number">—</div>
-            <div class="stat-note">Awaiting database connection</div>
+            <div class="stat-label">Total Providers</div>
+            <div class="stat-number" id="totalProviders">0</div>
+            <div class="stat-note">Registered provider applications</div>
         </div>
 
         <div class="card">
-            <div class="stat-icon">📋</div>
-            <div class="stat-label">Total Bookings</div>
-            <div class="stat-number">—</div>
-            <div class="stat-note">Awaiting database connection</div>
+            <div class="stat-icon">⏳</div>
+            <div class="stat-label">Pending Applications</div>
+            <div class="stat-number" id="pendingProviders">0</div>
+            <div class="stat-note">Awaiting owner review</div>
         </div>
 
         <div class="card">
-            <div class="stat-icon">💰</div>
-            <div class="stat-label">Platform Earnings</div>
-            <div class="stat-number">—</div>
-            <div class="stat-note">Awaiting commission integration</div>
+            <div class="stat-icon">✅</div>
+            <div class="stat-label">Approved Providers</div>
+            <div class="stat-number" id="approvedProviders">0</div>
+            <div class="stat-note">Approved to join the platform</div>
+        </div>
+
+        <div class="card">
+            <div class="stat-icon">❌</div>
+            <div class="stat-label">Rejected Applications</div>
+            <div class="stat-number" id="rejectedProviders">0</div>
+            <div class="stat-note">Not approved</div>
         </div>
 
     </section>
 
-    <h2 class="section-title">Management Centre</h2>
+    <section class="panel" id="applications">
+        <h2>Provider Applications</h2>
 
-    <section class="actions">
-
-        <a href="provider-register.html" class="action-card">
-            <div class="action-icon">📝</div>
-            <h3>Provider Applications</h3>
-            <p>Review applications from professionals who want to join Edesvino Services.</p>
-        </a>
-
-        <a href="provider-dashboard.html" class="action-card">
-            <div class="action-icon">🔧</div>
-            <h3>Provider Operations</h3>
-            <p>Prepare to monitor service providers and their activities.</p>
-        </a>
-
-        <a href="book-service.html" class="action-card">
-            <div class="action-icon">📅</div>
-            <h3>Customer Bookings</h3>
-            <p>Open the customer booking page and prepare to manage service requests.</p>
-        </a>
-
-        <a href="customer-register.html" class="action-card">
-            <div class="action-icon">👤</div>
-            <h3>Customer Management</h3>
-            <p>Prepare to manage customer accounts and registrations.</p>
-        </a>
-
-        <a href="provider-login.html" class="action-card">
-            <div class="action-icon">🔐</div>
-            <h3>Provider Login</h3>
-            <p>Open the provider sign-in page.</p>
-        </a>
-
-        <a href="customer-login.html" class="action-card">
-            <div class="action-icon">🔑</div>
-            <h3>Customer Login</h3>
-            <p>Open the customer sign-in page.</p>
-        </a>
-
-    </section>
-
-    <section class="panel">
-        <h2>Financial Management</h2>
-        <p>
-            This section will display completed service payments,
-            provider payouts, platform commissions and transaction history.
-            Financial figures will only be shown after verified payment
-            records and commission calculations are connected.
+        <p class="panel-description">
+            Review service provider applications. Approving an application
+            changes its status to Approved. Rejecting an application changes
+            its status to Rejected.
         </p>
+
+        <div id="providerList" class="loading">
+            Loading provider applications...
+        </div>
     </section>
 
     <section class="panel">
-        <h2>Platform Settings</h2>
-        <p>
-            Future controls will include service categories, operating
-            locations, provider approval rules, commission settings,
-            notifications and platform administration.
+        <h2>Other Management Areas</h2>
+
+        <p class="panel-description">
+            These areas will be connected as their database features are
+            completed and tested. No unverified financial figures are shown.
         </p>
 
         <div class="quick-links">
             <a href="index.html">Visit Homepage</a>
-            <a href="provider-register.html">Provider Registration</a>
-            <a href="book-service.html">Book a Service</a>
+            <a href="provider-dashboard.html">Provider Dashboard</a>
+            <a href="book-service.html">Customer Bookings</a>
+            <a href="customer-register.html">Customer Registration</a>
         </div>
     </section>
 
 </main>
 
 <footer>
-    © 2026 <span>Edesvino Services</span>. Building Opportunities. Connecting Professionals.
+    © 2026 <span>Edesvino Services</span>.
+    Building Opportunities. Connecting Professionals.
 </footer>
+
+<script>
+const SUPABASE_URL = 'https://dhsfvctmvgmzrnpgxznd.supabase.co';
+
+const SUPABASE_KEY =
+    'sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm';
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+const loginSection = document.getElementById('loginSection');
+const dashboardSection = document.getElementById('dashboardSection');
+const loginForm = document.getElementById('loginForm');
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const loginMessage = document.getElementById('loginMessage');
+const dashboardMessage = document.getElementById('dashboardMessage');
+const providerList = document.getElementById('providerList');
+
+function showMessage(element, message, type) {
+    element.textContent = message;
+    element.className = 'message ' + type;
+}
+
+function clearMessage(element) {
+    element.textContent = '';
+    element.className = 'message';
+}
+
+function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, function(character) {
+        return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        }[character];
+    });
+}
+
+function showLogin() {
+    loginSection.classList.remove('hidden');
+    dashboardSection.classList.add('hidden');
+    logoutBtn.classList.add('hidden');
+}
+
+function showDashboard() {
+    loginSection.classList.add('hidden');
+    dashboardSection.classList.remove('hidden');
+    logoutBtn.classList.remove('hidden');
+}
+
+async function verifyOwner(user) {
+    if (!user) {
+        return false;
+    }
+
+    const { data, error } = await supabaseClient
+        .from('platform_admins')
+        .select('user_id')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+    if (error) {
+        throw error;
+    }
+
+    return !!data;
+}
+
+async function loadDashboard(user) {
+    showDashboard();
+
+    clearMessage(dashboardMessage);
+
+    const { data: providers, error } = await supabaseClient
+        .from('service_providers')
+        .select(`
+            id,
+            full_name,
+            business_name,
+            email,
+            approval_status,
+            created_at
+        `)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        providerList.textContent =
+            'Unable to load provider applications. ' + error.message;
+
+        showMessage(
+            dashboardMessage,
+            'There was a problem loading provider records. Please check the database permissions.',
+            'error'
+        );
+
+        return;
+    }
+
+    const records = providers || [];
+
+    const pending = records.filter(
+        provider => provider.approval_status === 'pending'
+    ).length;
+
+    const approved = records.filter(
+        provider => provider.approval_status === 'approved'
+    ).length;
+
+    const rejected = records.filter(
+        provider => provider.approval_status === 'rejected'
+    ).length;
+
+    document.getElementById('totalProviders').textContent = records.length;
+    document.getElementById('pendingProviders').textContent = pending;
+    document.getElementById('approvedProviders').textContent = approved;
+    document.getElementById('rejectedProviders').textContent = rejected;
+
+    if (records.length === 0) {
+        providerList.innerHTML =
+            '<div class="empty">No provider applications have been submitted yet.</div>';
+        return;
+    }
+
+    providerList.innerHTML = records.map(provider => {
+        const status = provider.approval_status || 'pending';
+
+        const date = provider.created_at
+            ? new Date(provider.created_at).toLocaleString()
+            : 'Date unavailable';
+
+        let statusClass = 'status-pending';
+
+        if (status === 'approved') {
+            statusClass = 'status-approved';
+        } else if (status === 'rejected') {
+            statusClass = 'status-rejected';
+        }
+
+        let buttons = '';
+
+        if (status !== 'approved') {
+            buttons += `
+                <button
+                    class="action-btn approve-btn"
+                    data-id="${escapeHTML(provider.id)}"
+                    data-status="approved">
+                    Approve
+                </button>
+            `;
+        }
+
+        if (status !== 'rejected') {
+            buttons += `
+                <button
+                    class="action-btn reject-btn"
+                    data-id="${escapeHTML(provider.id)}"
+                    data-status="rejected">
+                    Reject
+                </button>
+            `;
+        }
+
+        if (status !== 'pending') {
+            buttons += `
+                <button
+                    class="action-btn pending-btn"
+                    data-id="${escapeHTML(provider.id)}"
+                    data-status="pending">
+                    Set Pending
+                </button>
+            `;
+        }
+
+        return `
+            <article class="provider-card">
+                <h3>${escapeHTML(provider.full_name)}</h3>
+
+                <div class="provider-info">
+                    <strong>Business:</strong>
+                    ${escapeHTML(provider.business_name || 'Not provided')}
+                    <br>
+
+                    <strong>Email:</strong>
+                    ${escapeHTML(provider.email || 'Not provided')}
+                    <br>
+
+                    <strong>Application date:</strong>
+                    ${escapeHTML(date)}
+                </div>
+
+                <span class="status ${statusClass}">
+                    ${escapeHTML(status)}
+                </span>
+
+                <div class="provider-actions">
+                    ${buttons}
+                </div>
+            </article>
+        `;
+    }).join('');
+
+    providerList.querySelectorAll('button[data-id]').forEach(button => {
+        button.addEventListener('click', async function() {
+            await updateProviderStatus(
+                this.dataset.id,
+                this.dataset.status,
+                this
+            );
+        });
+    });
+}
+
+async function updateProviderStatus(providerId, newStatus, button) {
+    const action = newStatus.charAt(0).toUpperCase() +
+        newStatus.slice(1);
+
+    const confirmed = confirm(
+        'Are you sure you want to set this provider application to ' +
+        action + '?'
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    const buttons = providerList.querySelectorAll('button');
+    buttons.forEach(item => item.disabled = true);
+
+    clearMessage(dashboardMessage);
+
+    const { error } = await supabaseClient.rpc(
+        'set_provider_approval',
+        {
+            p_provider_id: providerId,
+            p_new_status: newStatus
+        }
+    );
+
+    if (error) {
+        showMessage(
+            dashboardMessage,
+            'The application status could not be updated: ' + error.message,
+            'error'
+        );
+
+        buttons.forEach(item => item.disabled = false);
+        return;
+    }
+
+    showMessage(
+        dashboardMessage,
+        'Provider application successfully updated to ' + action + '.',
+        'success'
+    );
+
+    await loadDashboard();
+}
+
+loginForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    clearMessage(loginMessage);
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Signing in...';
+
+    const email = document.getElementById('ownerEmail').value.trim();
+    const password = document.getElementById('ownerPassword').value;
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if (error) {
+        showMessage(
+            loginMessage,
+            'Login failed: ' + error.message,
+            'error'
+        );
+
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Sign In';
+        return;
+    }
+
+    try {
+        const authorised = await verifyOwner(data.user);
+
+        if (!authorised) {
+            await supabaseClient.auth.signOut();
+
+            showMessage(
+                loginMessage,
+                'Access denied. This account is not authorised as a platform owner.',
+                'error'
+            );
+
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'Sign In';
+            return;
+        }
+
+        await loadDashboard(data.user);
+
+    } catch (error) {
+        showMessage(
+            loginMessage,
+            'Owner verification failed: ' + error.message,
+            'error'
+        );
+
+        await supabaseClient.auth.signOut();
+    }
+
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Sign In';
+});
+
+logoutBtn.addEventListener('click', async function() {
+    await supabaseClient.auth.signOut();
+    showLogin();
+    clearMessage(loginMessage);
+});
+
+async function initialiseDashboard() {
+    const { data, error } = await supabaseClient.auth.getSession();
+
+    if (error || !data.session) {
+        showLogin();
+        return;
+    }
+
+    try {
+        const authorised = await verifyOwner(data.session.user);
+
+        if (!authorised) {
+            await supabaseClient.auth.signOut();
+            showLogin();
+
+            showMessage(
+                loginMessage,
+                'Access denied. This account is not authorised as a platform owner.',
+                'error'
+            );
+
+            return;
+        }
+
+        await loadDashboard(data.session.user);
+
+    } catch (error) {
+        showLogin();
+
+        showMessage(
+            loginMessage,
+            'Unable to verify owner access: ' + error.message,
+            'error'
+        );
+    }
+}
+
+initialiseDashboard();
+</script>
 
 </body>
 </html>
