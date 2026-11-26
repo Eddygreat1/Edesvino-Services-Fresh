@@ -5,39 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#064e38">
 <title>Provider Dashboard | Edesvino Services</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--green:#064e38;--light:#087653;--gold:#d6a62e;--text:#25372e}
 body{font-family:Arial,sans-serif;background:#f3f6f3;color:var(--text)}
-header{background:var(--green);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-size:20px;font-weight:bold;letter-spacing:1px}.logo span{color:var(--gold)}
-.header-actions{display:flex;gap:15px;align-items:center;flex-wrap:wrap}
-.header-actions a,.header-actions button{color:#fff;background:transparent;border:1px solid rgba(255,255,255,.55);border-radius:6px;padding:9px 12px;text-decoration:none;font-size:13px;cursor:pointer}
-.hero{background:linear-gradient(120deg,#064e38,#087653);color:#fff;padding:32px 22px 52px}
-.hero h1{font-size:26px;margin-bottom:9px}.hero p{color:#e0eee6;font-size:14px;line-height:1.6}
-.dashboard{max-width:1000px;margin:-25px auto 40px;padding:0 16px;position:relative}
-.card,.panel{background:#fff;padding:22px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:20px}
+header{background:var(--green);color:white;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:20px;font-weight:bold;letter-spacing:1px}
+.logo span{color:var(--gold)}
+.header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.header-actions a,.header-actions button{color:white;background:transparent;border:1px solid rgba(255,255,255,.55);border-radius:6px;padding:9px 12px;text-decoration:none;font-size:13px;cursor:pointer}
+.hero{background:linear-gradient(120deg,#064e38,#087653);color:white;padding:32px 22px 52px}
+.hero h1{font-size:26px;margin-bottom:9px}
+.hero p{color:#e0eee6;font-size:14px;line-height:1.6}
+.dashboard{max-width:1050px;margin:-25px auto 40px;padding:0 16px;position:relative}
+.card,.panel{background:white;padding:22px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:20px}
 .welcome{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.welcome h2{color:var(--green);font-size:21px;margin-bottom:7px}.muted{color:#68756d;font-size:13px;line-height:1.6}
-.status{display:inline-block;background:#fff2cf;color:#815d08;padding:9px 14px;border-radius:20px;font-size:12px;font-weight:bold}
-.status.approved{background:#e2f6e8;color:#17632b}.status.rejected{background:#ffe8e8;color:#a00000}
+.welcome h2{color:var(--green);font-size:21px;margin-bottom:7px}
+.muted{color:#68756d;font-size:13px;line-height:1.6}
+.status{display:inline-block;background:#fff2cf;color:#815d08;padding:8px 12px;border-radius:20px;font-size:12px;font-weight:bold}
+.status.approved,.badge.completed,.badge.accepted{background:#e2f6e8;color:#17632b}
+.status.rejected,.badge.rejected{background:#ffe8e8;color:#a00000}
+.badge{display:inline-block;padding:6px 10px;border-radius:20px;background:#fff2cf;color:#815d08;font-size:11px;font-weight:bold;text-transform:capitalize}
+.badge.pending{background:#fff2cf;color:#815d08}
+.badge.in_progress{background:#e5efff;color:#174c91}
+.badge.cancelled{background:#eee;color:#555}
 .section-title{color:var(--green);font-size:19px;margin:27px 0 14px}
 .profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .detail{background:#f7f9f7;border-radius:8px;padding:13px;overflow-wrap:anywhere}
-.detail small{display:block;color:#6c786f;font-size:11px;margin-bottom:6px}.detail strong{font-size:14px;font-weight:600}
+.detail small{display:block;color:#6c786f;font-size:11px;margin-bottom:6px}
+.detail strong{font-size:14px;font-weight:600}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.stat{background:#fff;padding:18px;border-radius:10px;border-bottom:3px solid var(--gold);box-shadow:0 3px 12px rgba(0,0,0,.04)}
-.stat .icon{font-size:23px;margin-bottom:9px}.stat h3{color:var(--green);font-size:17px;margin-bottom:5px}.stat p{font-size:12px;color:#68756d}
-.notice{background:#fff8e6;border-left:4px solid var(--gold);padding:15px;border-radius:7px;font-size:13px;line-height:1.7;margin-top:20px}
-.message{background:#fff;padding:22px;border-radius:12px;line-height:1.7;font-size:14px;box-shadow:0 4px 16px rgba(0,0,0,.05)}
-.message.error{background:#fff0f0;color:#8f1717}.message a{color:var(--green);font-weight:bold}
+.stat{background:white;padding:18px;border-radius:10px;border-bottom:3px solid var(--gold);box-shadow:0 3px 12px rgba(0,0,0,.04)}
+.stat h3{color:var(--green);font-size:23px;margin-bottom:5px}
+.stat p{font-size:12px;color:#68756d}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:15px}
+.toolbar h2{color:var(--green);font-size:19px}
+.primary-button,.action-button{border:0;border-radius:7px;padding:11px 15px;font-weight:bold;cursor:pointer;font-size:13px}
+.primary-button{background:var(--green);color:white}
+.accept-button{background:#087653;color:white}
+.reject-button{background:#fff0f0;color:#a00000;border:1px solid #f1caca}
+.action-button:disabled,.primary-button:disabled{opacity:.55;cursor:not-allowed}
+.booking-card{border:1px solid #e4eae5;border-radius:10px;padding:17px;margin-bottom:15px;background:white}
+.booking-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px}
+.booking-top h3{color:var(--green);font-size:17px}
+.booking-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.booking-detail{background:#f7f9f7;padding:11px;border-radius:7px;overflow-wrap:anywhere}
+.booking-detail small{display:block;color:#6c786f;font-size:11px;margin-bottom:5px}
+.booking-detail strong{font-size:13px;font-weight:600;line-height:1.5}
+.booking-description{margin-top:11px;padding:12px;background:#f7f9f7;border-radius:7px;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.booking-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.notice{background:#fff8e6;border-left:4px solid var(--gold);padding:15px;border-radius:7px;font-size:13px;line-height:1.7;margin-top:15px}
+.message{background:white;padding:20px;border-radius:12px;line-height:1.7;font-size:14px;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:20px}
+.message.error{background:#fff0f0;color:#8f1717}
+.message a{color:var(--green);font-weight:bold}
+.empty{background:#f7f9f7;padding:22px;border-radius:9px;text-align:center;color:#68756d;font-size:14px;line-height:1.7}
 .hidden{display:none!important}
 footer{text-align:center;padding:20px;color:#68756d;font-size:12px}
-@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.profile-grid{grid-template-columns:1fr}.hero h1{font-size:23px}}
+@media(max-width:650px){
+.stats{grid-template-columns:repeat(2,1fr)}
+.profile-grid,.booking-grid{grid-template-columns:1fr}
+.hero h1{font-size:23px}
+}
 @media(max-width:370px){.stats{grid-template-columns:1fr}}
 </style>
 </head>
+
 <body>
+
 <header>
   <div class="logo">EDESVINO <span>SERVICES</span></div>
   <div class="header-actions">
@@ -48,26 +83,31 @@ footer{text-align:center;padding:20px;color:#68756d;font-size:12px}
 
 <section class="hero">
   <h1>Provider Dashboard</h1>
-  <p>Your professional account and application information.</p>
+  <p>Manage your customer requests and provider account.</p>
 </section>
 
 <main class="dashboard">
-  <div id="loading" class="message">Checking your provider account. Please wait...</div>
+
+  <div id="loading" class="message">
+    Checking your provider account. Please wait...
+  </div>
 
   <div id="signedOut" class="message hidden">
     You need to sign in to view your provider dashboard.
-    <br><br><a href="provider-login.html">Go to Provider Login</a>
+    <br><br>
+    <a href="provider-login.html">Go to Provider Login</a>
   </div>
 
   <div id="errorBox" class="message error hidden"></div>
 
   <div id="dashboardContent" class="hidden">
+
     <section class="card welcome">
       <div>
         <h2 id="welcomeName">Welcome</h2>
-        <p class="muted">Here is the information saved in your provider application.</p>
+        <p class="muted">Your provider account and booking information.</p>
       </div>
-      <div id="approvalStatus" class="status">Application status: Checking...</div>
+      <div id="approvalStatus" class="status">Checking...</div>
     </section>
 
     <h2 class="section-title">Your Provider Profile</h2>
@@ -79,41 +119,85 @@ footer{text-align:center;padding:20px;color:#68756d;font-size:12px}
       <div class="detail"><small>Phone number</small><strong id="phone">—</strong></div>
       <div class="detail"><small>Service category</small><strong id="category">—</strong></div>
       <div class="detail"><small>Location</small><strong id="location">—</strong></div>
-      <div class="detail" style="grid-column:1/-1"><small>Service description</small><strong id="description">—</strong></div>
+      <div class="detail" style="grid-column:1/-1">
+        <small>Service description</small>
+        <strong id="description">—</strong>
+      </div>
     </section>
 
-    <h2 class="section-title">Your Overview</h2>
+    <h2 class="section-title">Your Booking Overview</h2>
 
     <section class="stats">
-      <div class="stat"><div class="icon">📩</div><h3>Coming soon</h3><p>New job requests</p></div>
-      <div class="stat"><div class="icon">🔧</div><h3>Coming soon</h3><p>Active jobs</p></div>
-      <div class="stat"><div class="icon">✅</div><h3>Coming soon</h3><p>Completed jobs</p></div>
-      <div class="stat"><div class="icon">💰</div><h3>Coming soon</h3><p>Earnings</p></div>
-      <div class="stat"><div class="icon">⭐</div><h3>Coming soon</h3><p>Customer rating</p></div>
-      <div class="stat"><div class="icon">👤</div><h3 id="profileStatus">—</h3><p>Profile approval</p></div>
+      <div class="stat">
+        <h3 id="totalBookings">0</h3>
+        <p>Total assigned bookings</p>
+      </div>
+      <div class="stat">
+        <h3 id="pendingBookings">0</h3>
+        <p>Pending requests</p>
+      </div>
+      <div class="stat">
+        <h3 id="acceptedBookings">0</h3>
+        <p>Accepted bookings</p>
+      </div>
+      <div class="stat">
+        <h3 id="completedBookings">0</h3>
+        <p>Completed jobs</p>
+      </div>
+      <div class="stat">
+        <h3 id="rejectedBookings">0</h3>
+        <p>Rejected requests</p>
+      </div>
+      <div class="stat">
+        <h3 id="profileStatus">—</h3>
+        <p>Profile approval</p>
+      </div>
     </section>
 
-    <section class="notice" id="statusNotice">
-      Your application status is shown above.
+    <section class="panel" style="margin-top:25px">
+
+      <div class="toolbar">
+        <h2>Your Customer Bookings</h2>
+        <button id="refreshButton" class="primary-button" type="button">
+          Refresh Bookings
+        </button>
+      </div>
+
+      <div id="bookingMessage" class="muted" style="margin-bottom:15px">
+        Loading your bookings...
+      </div>
+
+      <div id="bookingsList"></div>
+
+      <div class="notice">
+        <strong>Payment information:</strong><br>
+        Payment collection and provider payouts are not active yet.
+        Booking payment statuses are displayed for information only.
+        Do not begin a job based on an assumption that payment has been received.
+      </div>
+
     </section>
 
-    <section class="notice">
-      <strong>Booking and earnings features are still being built.</strong><br>
-      Job requests, completed jobs, ratings and earnings are not connected yet. These figures will only appear when the booking and provider operations systems are ready.
-    </section>
+    <section class="notice" id="statusNotice"></section>
+
   </div>
 </main>
 
 <footer>
   © <span id="year"></span> Edesvino Services. All Rights Reserved.
-  <br><br>Building Opportunities. Connecting People.
+  <br><br>
+  Building Opportunities. Connecting People.
 </footer>
 
 <script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import { createClient } from
+'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-const SUPABASE_URL = 'https://dhsfvctmvgmzrnpgxznd.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm';
+const SUPABASE_URL =
+'https://dhsfvctmvgmzrnpgxznd.supabase.co';
+
+const SUPABASE_KEY =
+'sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -122,8 +206,16 @@ const signedOut = document.getElementById('signedOut');
 const errorBox = document.getElementById('errorBox');
 const dashboardContent = document.getElementById('dashboardContent');
 const logoutButton = document.getElementById('logoutButton');
+const refreshButton = document.getElementById('refreshButton');
+const bookingMessage = document.getElementById('bookingMessage');
+const bookingsList = document.getElementById('bookingsList');
 
-document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year').textContent =
+new Date().getFullYear();
+
+let currentProvider = null;
+let currentUser = null;
+let providerApproved = false;
 
 function showError(message) {
   loading.classList.add('hidden');
@@ -133,7 +225,45 @@ function showError(message) {
 }
 
 function displayValue(value) {
-  return value && String(value).trim() ? String(value) : 'Not provided';
+  return value !== null &&
+    value !== undefined &&
+    String(value).trim() !== ''
+    ? String(value)
+    : 'Not provided';
+}
+
+function formatDate(value) {
+  if (!value) return 'Not specified';
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return 'Date unavailable';
+  }
+
+  return date.toLocaleString('en-NG', {
+    dateStyle: 'medium',
+    timeStyle: 'short'
+  });
+}
+
+function statusBadge(status) {
+  const value = String(status || 'pending').toLowerCase();
+  const safeClass = value.replace(/[^a-z0-9_-]/g, '');
+
+  return `<span class="badge ${safeClass}">${escapeHTML(value.replaceAll('_',' '))}</span>`;
+}
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, function(character) {
+    return {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[character];
+  });
 }
 
 async function loadProviderDashboard() {
@@ -143,9 +273,9 @@ async function loadProviderDashboard() {
 
     if (sessionError) throw sessionError;
 
-    const user = sessionData.session?.user;
+    currentUser = sessionData.session?.user;
 
-    if (!user) {
+    if (!currentUser) {
       loading.classList.add('hidden');
       signedOut.classList.remove('hidden');
       return;
@@ -153,69 +283,383 @@ async function loadProviderDashboard() {
 
     logoutButton.classList.remove('hidden');
 
-    const metadata = user.user_metadata || {};
+    const metadata = currentUser.user_metadata || {};
 
     if (metadata.account_type &&
         metadata.account_type !== 'service_provider') {
       await supabase.auth.signOut();
-      showError('This account is not registered as an Edesvino Services provider account. Please sign in with your provider account.');
+
+      showError(
+        'This account is not registered as an Edesvino Services provider account. Please sign in with your provider account.'
+      );
       return;
     }
 
-    const { data: provider, error: providerError } = await supabase
-      .from('service_providers')
-      .select('id, full_name, business_name, email, phone, location, description, primary_category, approval_status')
-      .eq('id', user.id)
-      .maybeSingle();
+    const { data: provider, error: providerError } =
+      await supabase
+        .from('service_providers')
+        .select(`
+          id,
+          full_name,
+          business_name,
+          email,
+          phone,
+          location,
+          description,
+          primary_category,
+          approval_status
+        `)
+        .eq('id', currentUser.id)
+        .maybeSingle();
 
     if (providerError) throw providerError;
 
     if (!provider) {
-      showError('We could not find a provider application linked to this login. Please return to Provider Login. Do not register again unless the support team confirms it is necessary.');
+      showError(
+        'We could not find a provider application linked to this login. Please return to Provider Login.'
+      );
       return;
     }
 
-    const name = provider.full_name || metadata.full_name || 'Service Provider';
-    const status = String(provider.approval_status || 'pending').toLowerCase();
+    currentProvider = provider;
 
-    document.getElementById('welcomeName').textContent = 'Welcome, ' + name + '!';
-    document.getElementById('fullName').textContent = displayValue(provider.full_name || metadata.full_name);
-    document.getElementById('businessName').textContent = displayValue(provider.business_name || metadata.business_name);
-    document.getElementById('email').textContent = displayValue(provider.email || user.email);
-    document.getElementById('phone').textContent = displayValue(provider.phone || metadata.phone);
-    document.getElementById('category').textContent = displayValue(provider.primary_category || metadata.primary_category);
-    document.getElementById('location').textContent = displayValue(provider.location || [metadata.location, metadata.state].filter(Boolean).join(', '));
-    document.getElementById('description').textContent = displayValue(provider.description || metadata.service_description);
+    const name = provider.full_name ||
+      metadata.full_name ||
+      'Service Provider';
 
-    const statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
-    const statusElement = document.getElementById('approvalStatus');
+    const status = String(
+      provider.approval_status || 'pending'
+    ).toLowerCase();
 
-    statusElement.textContent = 'Application status: ' + statusLabel;
+    providerApproved = status === 'approved';
 
-    if (status === 'approved') statusElement.classList.add('approved');
-    if (status === 'rejected') statusElement.classList.add('rejected');
+    document.getElementById('welcomeName').textContent =
+      'Welcome, ' + name + '!';
 
-    document.getElementById('profileStatus').textContent = statusLabel;
+    document.getElementById('fullName').textContent =
+      displayValue(provider.full_name || metadata.full_name);
+
+    document.getElementById('businessName').textContent =
+      displayValue(provider.business_name || metadata.business_name);
+
+    document.getElementById('email').textContent =
+      displayValue(provider.email || currentUser.email);
+
+    document.getElementById('phone').textContent =
+      displayValue(provider.phone || metadata.phone);
+
+    document.getElementById('category').textContent =
+      displayValue(provider.primary_category || metadata.primary_category);
+
+    document.getElementById('location').textContent =
+      displayValue(provider.location || metadata.location);
+
+    document.getElementById('description').textContent =
+      displayValue(provider.description || metadata.service_description);
+
+    const statusElement =
+      document.getElementById('approvalStatus');
+
+    statusElement.textContent =
+      'Application status: ' +
+      status.charAt(0).toUpperCase() + status.slice(1);
+
+    if (status === 'approved') {
+      statusElement.classList.add('approved');
+    }
+
+    if (status === 'rejected') {
+      statusElement.classList.add('rejected');
+    }
+
+    document.getElementById('profileStatus').textContent =
+      status.charAt(0).toUpperCase() + status.slice(1);
 
     const notice = document.getElementById('statusNotice');
 
-    if (status === 'approved') {
-      notice.textContent = 'Your provider application is approved. Booking and job-management features are still being built and are not active yet.';
-    } else if (status === 'rejected') {
-      notice.textContent = 'Your provider application is currently marked as rejected. Please contact Edesvino Services for clarification.';
+    if (!providerApproved) {
+      notice.textContent =
+        'Your provider application is not yet approved. Booking management will become available after approval.';
     } else {
-      notice.textContent = 'Your application is Pending review. This is normal after registration. You will be able to receive customer bookings only after approval and when the booking system is ready.';
+      notice.textContent =
+        'Your provider application is approved. You can now view customer bookings assigned to your provider account.';
     }
 
     loading.classList.add('hidden');
     dashboardContent.classList.remove('hidden');
 
+    if (providerApproved) {
+      await loadBookings();
+    } else {
+      bookingMessage.textContent =
+        'Booking management is available to approved providers.';
+      bookingsList.innerHTML =
+        '<div class="empty">Your application must be approved before you can manage bookings.</div>';
+    }
+
   } catch (error) {
     console.error('Provider dashboard error:', error);
 
-    showError('We could not load your provider details right now. Please check your internet connection and try again. If the problem continues, contact Edesvino support. Details: ' + (error.message || 'Unknown error'));
+    showError(
+      'We could not load your provider details. Please refresh the page. Details: ' +
+      (error.message || 'Unknown error')
+    );
   }
 }
+
+async function loadBookings() {
+  if (!currentUser || !providerApproved) return;
+
+  bookingMessage.textContent = 'Loading your bookings...';
+  bookingsList.innerHTML = '';
+  refreshButton.disabled = true;
+  refreshButton.textContent = 'Loading...';
+
+  try {
+    const { data, error } = await supabase
+      .from('service_bookings')
+      .select(`
+        id,
+        customer_name,
+        customer_phone,
+        service_address,
+        booking_date,
+        booking_status,
+        payment_status,
+        job_description,
+        service_id,
+        services (
+          title,
+          service_categories (name)
+        )
+      `)
+      .eq('provider_id', currentUser.id)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    const bookings = data || [];
+
+    updateStatistics(bookings);
+
+    if (bookings.length === 0) {
+      bookingMessage.textContent = 'No bookings found.';
+      bookingsList.innerHTML =
+        '<div class="empty">You do not have any customer bookings assigned to your account yet. New bookings will appear here when customers request your services.</div>';
+      return;
+    }
+
+    bookingMessage.textContent =
+      bookings.length + ' booking(s) assigned to your account.';
+
+    bookingsList.innerHTML = bookings
+      .map(createBookingCard)
+      .join('');
+
+  } catch (error) {
+    console.error('Booking loading error:', error);
+
+    bookingMessage.textContent =
+      'We could not load your bookings.';
+
+    bookingsList.innerHTML =
+      '<div class="empty">Booking information could not be loaded. Please refresh and try again. Details: ' +
+      escapeHTML(error.message || 'Unknown error') +
+      '</div>';
+  } finally {
+    refreshButton.disabled = false;
+    refreshButton.textContent = 'Refresh Bookings';
+  }
+}
+
+function updateStatistics(bookings) {
+  document.getElementById('totalBookings').textContent =
+    bookings.length;
+
+  document.getElementById('pendingBookings').textContent =
+    bookings.filter(b =>
+      String(b.booking_status).toLowerCase() === 'pending'
+    ).length;
+
+  document.getElementById('acceptedBookings').textContent =
+    bookings.filter(b =>
+      String(b.booking_status).toLowerCase() === 'accepted'
+    ).length;
+
+  document.getElementById('completedBookings').textContent =
+    bookings.filter(b =>
+      String(b.booking_status).toLowerCase() === 'completed'
+    ).length;
+
+  document.getElementById('rejectedBookings').textContent =
+    bookings.filter(b =>
+      String(b.booking_status).toLowerCase() === 'rejected'
+    ).length;
+}
+
+function createBookingCard(booking) {
+  const status = String(
+    booking.booking_status || 'pending'
+  ).toLowerCase();
+
+  const service = booking.services || {};
+
+  const category = service.service_categories?.name || 'Service';
+
+  const canRespond =
+    status === 'pending' && providerApproved;
+
+  return `
+    <article class="booking-card">
+
+      <div class="booking-top">
+        <h3>Booking #${escapeHTML(booking.id)}</h3>
+        <div>${statusBadge(status)}</div>
+      </div>
+
+      <div class="booking-grid">
+
+        <div class="booking-detail">
+          <small>Customer name</small>
+          <strong>${escapeHTML(displayValue(booking.customer_name))}</strong>
+        </div>
+
+        <div class="booking-detail">
+          <small>Customer phone</small>
+          <strong>${escapeHTML(displayValue(booking.customer_phone))}</strong>
+        </div>
+
+        <div class="booking-detail">
+          <small>Requested service</small>
+          <strong>${escapeHTML(displayValue(service.title))}</strong>
+        </div>
+
+        <div class="booking-detail">
+          <small>Service category</small>
+          <strong>${escapeHTML(category)}</strong>
+        </div>
+
+        <div class="booking-detail">
+          <small>Preferred date and time</small>
+          <strong>${escapeHTML(formatDate(booking.booking_date))}</strong>
+        </div>
+
+        <div class="booking-detail">
+          <small>Payment status</small>
+          <strong>${escapeHTML(displayValue(booking.payment_status))}</strong>
+        </div>
+
+        <div class="booking-detail" style="grid-column:1/-1">
+          <small>Service address</small>
+          <strong>${escapeHTML(displayValue(booking.service_address))}</strong>
+        </div>
+
+      </div>
+
+      <div class="booking-description">
+        <strong>Customer's job description:</strong><br>
+        ${escapeHTML(displayValue(booking.job_description))}
+      </div>
+
+      ${
+        canRespond
+        ? `
+          <div class="booking-actions">
+            <button
+              class="action-button accept-button"
+              data-booking-id="${escapeHTML(booking.id)}"
+              data-new-status="accepted"
+              type="button">
+              Accept Booking
+            </button>
+
+            <button
+              class="action-button reject-button"
+              data-booking-id="${escapeHTML(booking.id)}"
+              data-new-status="rejected"
+              type="button">
+              Reject Booking
+            </button>
+          </div>
+        `
+        : ''
+      }
+
+    </article>
+  `;
+}
+
+bookingsList.addEventListener('click', async function(event) {
+  const button = event.target.closest('button[data-booking-id]');
+
+  if (!button) return;
+
+  const bookingId = button.dataset.bookingId;
+  const newStatus = button.dataset.newStatus;
+
+  if (!['accepted', 'rejected'].includes(newStatus)) return;
+
+  const action = newStatus === 'accepted'
+    ? 'accept'
+    : 'reject';
+
+  const confirmed = confirm(
+    'Are you sure you want to ' + action +
+    ' booking #' + bookingId + '?'
+  );
+
+  if (!confirmed) return;
+
+  await updateBookingStatus(button, bookingId, newStatus);
+});
+
+async function updateBookingStatus(button, bookingId, newStatus) {
+  const originalText = button.textContent;
+
+  button.disabled = true;
+  button.textContent = 'Updating...';
+
+  try {
+    const { data, error } = await supabase
+      .from('service_bookings')
+      .update({
+        booking_status: newStatus
+      })
+      .eq('id', bookingId)
+      .eq('provider_id', currentUser.id)
+      .eq('booking_status', 'pending')
+      .select('id, booking_status')
+      .maybeSingle();
+
+    if (error) throw error;
+
+    if (!data) {
+      throw new Error(
+        'This booking was not updated. It may already have been handled or may no longer be pending. Refresh your bookings.'
+      );
+    }
+
+    alert(
+      'Booking #' + bookingId + ' has been ' +
+      newStatus + ' successfully.'
+    );
+
+    await loadBookings();
+
+  } catch (error) {
+    console.error('Booking update error:', error);
+
+    alert(
+      'We could not update this booking. ' +
+      (error.message || 'Please try again.')
+    );
+
+    button.disabled = false;
+    button.textContent = originalText;
+  }
+}
+
+refreshButton.addEventListener('click', loadBookings);
 
 logoutButton.addEventListener('click', async function() {
   logoutButton.disabled = true;
@@ -235,5 +679,6 @@ logoutButton.addEventListener('click', async function() {
 
 loadProviderDashboard();
 </script>
+
 </body>
 </html>
