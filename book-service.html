@@ -3,221 +3,353 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#064b35">
-<title>Book a Service | Edesvino Services</title>
+<meta name="theme-color" content="#087b55">
+<meta name="description" content="Find trusted service professionals with Edesvino Services.">
+<title>Edesvino Services</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f7f8f2;color:#24352d;line-height:1.6}
-header{background:linear-gradient(135deg,#043d2c,#08734b);padding:18px 20px;color:#fff}
-.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-size:21px;font-weight:800;letter-spacing:1px}.logo span,footer span{color:#e9bd55}
-.nav a{color:#fff;text-decoration:none;font-size:14px}
-.hero{background:linear-gradient(135deg,#06442f,#087b50);color:#fff;padding:48px 20px 72px;text-align:center}
-.tag{display:inline-block;background:#ffffff22;color:#f4d47f;padding:7px 16px;border-radius:30px;font-size:12px;margin-bottom:15px;letter-spacing:1px}
-.hero h1{font-size:clamp(29px,6vw,44px);line-height:1.2;margin-bottom:14px}
-.hero p{max-width:600px;margin:auto;color:#e2eee7;font-size:15px}
-.container{max-width:850px;margin:-34px auto 50px;padding:0 15px;position:relative}
-.booking-card{background:#fff;border-radius:18px;padding:27px;box-shadow:0 12px 40px #00000016}
-.section-title{color:#075b3d;font-size:21px;margin-bottom:5px}
-.section-subtitle{color:#78827b;font-size:13px;margin-bottom:22px}
-.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 17px}
-.field{margin-bottom:17px}.field.full{grid-column:1/-1}
-.field label{display:block;font-weight:bold;font-size:13px;margin-bottom:7px;color:#344b3d}
-input,select,textarea{width:100%;padding:13px;border:1px solid #dce4dc;border-radius:9px;font-size:14px;background:#fff;color:#26372e;outline:none}
-input:focus,select:focus,textarea:focus{border-color:#08734b;box-shadow:0 0 0 3px #08734b17}
-input[readonly]{background:#f2f5f1;color:#59685e}
-textarea{min-height:115px;resize:vertical}
-.gold-line{height:1px;background:#eee6d1;margin:23px 0}
-.submit-btn{width:100%;border:0;background:linear-gradient(135deg,#c3942f,#e5bd5c);color:#173b2a;padding:16px;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer;margin-top:8px}
-.submit-btn:disabled{opacity:.6;cursor:not-allowed}
-.notice{background:#f1f7f1;border-left:4px solid #08734b;padding:13px;font-size:12px;color:#526456;border-radius:5px;margin:16px 0}
-#message{display:none;padding:14px;border-radius:9px;margin-top:16px;font-size:13px;overflow-wrap:anywhere}
-#message.error{display:block;background:#fff0ef;color:#9b2922}
-#message.success{display:block;background:#edf8f1;color:#075b3d}
-.back{display:block;text-align:center;color:#08734b;text-decoration:none;margin-top:23px;font-weight:bold;font-size:14px}
-footer{text-align:center;background:#063c2b;color:#dce9df;padding:25px 15px;font-size:12px}
-.small-note{font-size:12px;color:#6e7b72;margin-top:6px}
-@media(max-width:600px){.booking-card{padding:21px 16px}.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f8f6;
+    color: #17231e;
+    line-height: 1.6;
+}
+
+header {
+    background: white;
+    padding: 18px;
+    border-bottom: 1px solid #e5ece7;
+}
+
+nav {
+    max-width: 1050px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    color: #07513c;
+}
+
+.logo span {
+    color: #e9b949;
+}
+
+nav a {
+    color: #07513c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    background: linear-gradient(135deg, #e5f4ed, #f8f7ee);
+    padding: 65px 20px;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 7vw, 60px);
+    line-height: 1.1;
+    max-width: 700px;
+    margin: 12px 0;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #52635a;
+    max-width: 650px;
+}
+
+.label {
+    color: #087b55;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.button {
+    display: inline-block;
+    padding: 13px 20px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px 8px 0 0;
+}
+
+.primary {
+    background: #087b55;
+    color: white;
+}
+
+.secondary {
+    background: white;
+    color: #07513c;
+    border: 1px solid #d6e4dc;
+}
+
+section {
+    padding: 45px 20px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #66736c;
+    margin-bottom: 25px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 13px;
+    border: 1px solid #e4ece7;
+}
+
+.card .icon {
+    font-size: 30px;
+}
+
+.card h3 {
+    margin: 8px 0 3px;
+}
+
+.card p {
+    color: #66736c;
+    margin: 0;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.step {
+    background: white;
+    padding: 20px;
+    border-radius: 13px;
+}
+
+.number {
+    background: #e4f3eb;
+    color: #087b55;
+    padding: 9px 13px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.cta {
+    background: #07513c;
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+}
+
+.cta p {
+    color: #d7e8df;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #718078;
+}
+
+@media(max-width: 650px) {
+    .grid,
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        padding: 45px 20px;
+    }
+}
+
+@media(max-width: 400px) {
+    .grid,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 </head>
-<body>
-<header><div class="nav"><div class="logo">EDESVINO <span>SERVICES</span></div><a href="index.html">Home</a></div></header>
-<section class="hero">
-  <div class="tag">PROFESSIONAL SERVICES MADE EASIER</div>
-  <h1>What Service Do You Need?</h1>
-  <p>Tell us what you need. Edesvino Services connects customers with service professionals.</p>
-</section>
-<main class="container">
-<div class="booking-card">
-  <h2 class="section-title">Request a Service</h2>
-  <p class="section-subtitle">Choose an available service and tell us where and when you need it.</p>
-  <div id="pageMessage" class="notice">Checking your customer account and loading available services…</div>
-  <form id="bookingForm" hidden>
-    <h3 class="section-title" style="font-size:16px;margin-bottom:14px">1. Choose an Available Service</h3>
-    <div class="field">
-      <label for="service">Service</label>
-      <select id="service" required><option value="">Loading services…</option></select>
-      <div class="small-note" id="serviceDetails">Only active service listings are shown.</div>
-    </div>
-    <div class="gold-line"></div>
-    <h3 class="section-title" style="font-size:16px;margin-bottom:17px">2. Your Contact Details</h3>
-    <div class="field-grid">
-      <div class="field"><label for="customerName">Full Name</label><input id="customerName" type="text" autocomplete="name" required></div>
-      <div class="field"><label for="phone">Phone Number</label><input id="phone" type="tel" autocomplete="tel" required></div>
-      <div class="field full"><label for="email">Email Address</label><input id="email" type="email" autocomplete="email" required readonly></div>
-    </div>
-    <div class="gold-line"></div>
-    <h3 class="section-title" style="font-size:16px;margin-bottom:17px">3. Job Location and Details</h3>
-    <div class="field-grid">
-      <div class="field"><label for="state">State</label><input id="state" type="text" value="Rivers State" readonly required></div>
-      <div class="field"><label for="city">City / Area</label><input id="city" type="text" placeholder="E.g. Port Harcourt, Rumuokoro" required></div>
-      <div class="field full"><label for="address">Street / Full Address</label><input id="address" type="text" placeholder="Where should the professional meet you?" required></div>
-      <div class="field"><label for="date">Preferred Date</label><input id="date" type="date" required></div>
-      <div class="field"><label for="time">Preferred Time</label><input id="time" type="time" required></div>
-      <div class="field full"><label for="description">Describe the Job</label><textarea id="description" placeholder="Explain the work you need done, the problem, and any important details…" required></textarea></div>
-    </div>
-    <div class="notice"><strong>How it works:</strong> Your request will be recorded as pending. The service provider linked to the selected listing will be associated with the request. Payment is not collected on this form.</div>
-    <button type="submit" class="submit-btn" id="submitButton">Request a Professional →</button>
-    <div id="message" role="status" aria-live="polite"></div>
-  </form>
-  <a href="index.html" class="back">← Return to Homepage</a>
-</div>
-</main>
-<footer>© <span id="year"></span> Edesvino Services. Connecting people with professionals.</footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-const SUPABASE_URL = "https://dhsfvctmvgmzrnpgxznd.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm";
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-const form = document.getElementById("bookingForm");
-const pageMessage = document.getElementById("pageMessage");
-const serviceSelect = document.getElementById("service");
-const message = document.getElementById("message");
-const submitButton = document.getElementById("submitButton");
-let currentUser = null;
-let availableServices = [];
 
-function showMessage(text, type) {
-  message.className = type;
-  message.textContent = text;
-  message.style.display = "block";
-  message.scrollIntoView({behavior:"smooth",block:"center"});
-}
-function naira(value) {
-  const amount = Number(value);
-  return Number.isFinite(amount) ? "₦" + amount.toLocaleString("en-NG") : "Price to be discussed";
-}
-async function loadServices() {
-  const {data, error} = await db.from("services")
-    .select("id,provider_id,category_id,title,description,price,location,service_categories(name)")
-    .eq("is_active", true).order("title", {ascending:true});
-  if (error) throw new Error("We could not load available services. Please refresh the page. " + error.message);
-  availableServices = data || [];
-  serviceSelect.innerHTML = '<option value="">Select a service</option>';
-  if (!availableServices.length) {
-    serviceSelect.innerHTML = '<option value="">No active services are available yet</option>';
-    serviceSelect.disabled = true;
-    throw new Error("There are no active service listings available at the moment. Please check again later.");
-  }
-  availableServices.forEach(function(item) {
-    const option = document.createElement("option");
-    option.value = String(item.id);
-    const category = item.service_categories && item.service_categories.name ? item.service_categories.name + " — " : "";
-    option.textContent = category + item.title + " · " + naira(item.price);
-    serviceSelect.appendChild(option);
-  });
-}
-serviceSelect.addEventListener("change", function() {
-  const selected = availableServices.find(item => String(item.id) === serviceSelect.value);
-  const details = document.getElementById("serviceDetails");
-  if (!selected) { details.textContent = "Only active service listings are shown."; return; }
-  const category = selected.service_categories && selected.service_categories.name ? selected.service_categories.name : "Service";
-  details.textContent = category + " · " + naira(selected.price) +
-    (selected.location ? " · " + selected.location : "") +
-    (selected.description ? " — " + selected.description : "");
-});
-async function initialisePage() {
-  const {data, error} = await db.auth.getUser();
-  if (error || !data.user) {
-    pageMessage.textContent = "Please sign in to your Edesvino Services customer account before making a booking.";
-    const link = document.createElement("a");
-    link.href = "customer-login.html"; link.textContent = " Go to customer login";
-    link.style.color = "#075b3d"; link.style.fontWeight = "bold";
-    pageMessage.appendChild(link);
-    return;
-  }
-  currentUser = data.user;
-  if (currentUser.user_metadata && currentUser.user_metadata.account_type &&
-      currentUser.user_metadata.account_type !== "customer") {
-    pageMessage.textContent = "Please sign in with a customer account to request a service.";
-    return;
-  }
-  const metadata = currentUser.user_metadata || {};
-  document.getElementById("customerName").value = metadata.full_name || "";
-  document.getElementById("phone").value = metadata.phone || "";
-  document.getElementById("email").value = currentUser.email || "";
-  try {
-    await loadServices();
-    pageMessage.style.display = "none";
-    form.hidden = false;
-  } catch (error) {
-    pageMessage.textContent = error.message;
-    pageMessage.className = "notice";
-  }
-}
-form.addEventListener("submit", async function(event) {
-  event.preventDefault();
-  message.style.display = "none";
-  if (!currentUser) { showMessage("Your customer session could not be verified. Please sign in again.", "error"); return; }
-  const selected = availableServices.find(item => String(item.id) === serviceSelect.value);
-  if (!selected) { showMessage("Please select an available service.", "error"); return; }
-  const dateValue = document.getElementById("date").value;
-  const timeValue = document.getElementById("time").value;
-  const bookingDate = new Date(dateValue + "T" + timeValue + ":00");
-  if (!dateValue || !timeValue || Number.isNaN(bookingDate.getTime()) || bookingDate <= new Date()) {
-    showMessage("Please choose a valid future date and time for the service.", "error"); return;
-  }
-  const fullAddress = [
-    document.getElementById("address").value.trim(),
-    document.getElementById("city").value.trim(),
-    document.getElementById("state").value.trim()
-  ].filter(Boolean).join(", ");
-  const booking = {
-    customer_id: currentUser.id,
-    provider_id: selected.provider_id || null,
-    service_id: selected.id,
-    customer_name: document.getElementById("customerName").value.trim(),
-    customer_phone: document.getElementById("phone").value.trim(),
-    service_address: fullAddress,
-    booking_date: bookingDate.toISOString(),
-    booking_status: "pending",
-    payment_status: "pending",
-    job_description: document.getElementById("description").value.trim()
-  };
-  submitButton.disabled = true;
-  submitButton.textContent = "Submitting your request…";
-  try {
-    const {data, error} = await db.from("service_bookings").insert(booking).select("id").single();
-    if (error) throw error;
-    showMessage("Your service request has been submitted successfully. Your booking reference is #" +
-      data.id + ". Its status is pending. Please keep this reference for your records.", "success");
-    form.reset();
-    document.getElementById("state").value = "Rivers State";
-    document.getElementById("email").value = currentUser.email || "";
-    document.getElementById("customerName").value = (currentUser.user_metadata || {}).full_name || "";
-    document.getElementById("phone").value = (currentUser.user_metadata || {}).phone || "";
-  } catch (error) {
-    console.error("Booking submission error:", error);
-    showMessage("We could not submit your booking. " +
-      (error.message || "Please try again. If the problem continues, contact Edesvino Services support."), "error");
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = "Request a Professional →";
-  }
-});
-document.getElementById("date").min = new Date().toLocaleDateString("en-CA");
-initialisePage();
+<body>
+
+<header>
+<nav>
+<div class="logo">EDESVINO <span>SERVICES</span></div>
+<a href="#how">How It Works</a>
+</nav>
+</header>
+
+<main>
+
+<div class="hero">
+<div class="container">
+
+<div class="label">LOCAL HELP. MADE EASIER.</div>
+
+<h1>Find the Right Professional for the Job.</h1>
+
+<p>
+Need a plumber, electrician, cleaner, mechanic or technician?
+Edesvino Services is being built to connect customers with
+service professionals more easily.
+</p>
+
+<a href="book-service.html" class="button primary">
+Book a Service
+</a>
+
+<a href="#services" class="button secondary">
+Explore Services
+</a>
+
+<a href="provider-register.html" class="button secondary">
+Become a Provider
+</a>
+
+<p><strong>Launching first in Port Harcourt, Rivers State, Nigeria.</strong></p>
+
+</div>
+</div>
+
+<section id="services">
+<div class="container">
+
+<h2>Services We Aim to Offer</h2>
+
+<p class="subtitle">
+Our initial service categories.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🚰</div>
+<h3>Plumbing</h3>
+<p>Repairs, fittings and maintenance.</p>
+</div>
+
+<div class="card">
+<div class="icon">💡</div>
+<h3>Electrical Work</h3>
+<p>Electrical repairs and installations.</p>
+</div>
+
+<div class="card">
+<div class="icon">🧹</div>
+<h3>Cleaning</h3>
+<p>Home and office cleaning services.</p>
+</div>
+
+<div class="card">
+<div class="icon">❄️</div>
+<h3>AC Services</h3>
+<p>Air conditioner servicing and repairs.</p>
+</div>
+
+<div class="card">
+<div class="icon">🪚</div>
+<h3>Carpentry</h3>
+<p>Furniture, fittings and woodwork.</p>
+</div>
+
+<div class="card">
+<div class="icon">🔧</div>
+<h3>Mechanic Services</h3>
+<p>Vehicle repairs and maintenance.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="how">
+<div class="container">
+
+<h2>How Edesvino Services Will Work</h2>
+
+<p class="subtitle">
+A simple journey from request to completed job.
+</p>
+
+<div class="steps">
+
+<div class="step">
+<span class="number">1</span>
+<h3>Request a Service</h3>
+<p>Tell us what you need and where you need it.</p>
+</div>
+
+<div class="step">
+<span class="number">2</span>
+<h3>Connect With a Professional</h3>
+<p>Find an eligible service provider for your request.</p>
+</div>
+
+<div class="step">
+<span class="number">3</span>
+<h3>Get the Job Done</h3>
+<p>Work with the provider and confirm completion.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="cta">
+<h2>Are You a Service Professional?</h2>
+
+<p>
+Get ready to join the Edesvino Services provider community.
+</p>
+
+<a href="provider-register.html" class="button secondary">
+Provider Registration
+</a>
+
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+© <span id="year"></span> Edesvino Services. All rights reserved.
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+new Date().getFullYear();
 </script>
+
 </body>
 </html>
