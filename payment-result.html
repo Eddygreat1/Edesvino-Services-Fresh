@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Result | Edesvino Services</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5ed;
+  font-family: Arial, sans-serif;
+  color: #173c2e;
+}
+
+.container {
+  width: 100%;
+  max-width: 460px;
+  background: white;
+  padding: 35px 24px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #064e38;
+  margin-bottom: 25px;
+}
+
+.icon {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.message {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #555;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 9px;
+  background: #064e38;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+.home {
+  display: block;
+  margin-top: 20px;
+  color: #987323;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.reference {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #777;
+  overflow-wrap: anywhere;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo">EDESVINO SERVICES</div>
+
+  <div class="icon" id="icon">⏳</div>
+
+  <h1 id="title">Checking your payment...</h1>
+
+  <p class="message" id="message">
+    Please wait while we securely verify your Quickteller payment.
+  </p>
+
+  <div class="reference" id="reference"></div>
+
+  <button id="retryButton" onclick="verifyPayment()" disabled>
+    Checking payment...
+  </button>
+
+  <a class="home" href="/">Return to Homepage</a>
+
+</div>
+
+<script>
+const SUPABASE_URL =
+  "https://dhsfvctmvgmzrnpgxznd.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_4ZDqpnq4q6gubdteRQCc5A_JX-OUwlm";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+const params = new URLSearchParams(window.location.search);
+
+const txnRef =
+  params.get("txnref") ||
+  params.get("txn_ref") ||
+  params.get("transactionreference") ||
+  params.get("transactionReference") ||
+  params.get("reference");
+
+const icon = document.getElementById("icon");
+const title = document.getElementById("title");
+const message = document.getElementById("message");
+const retryButton = document.getElementById("retryButton");
+const reference = document.getElementById("reference");
+
+reference.textContent = txnRef
+  ? "Transaction reference: " + txnRef
+  : "";
+
+function showResult(symbol, heading, text, buttonText) {
+  icon.textContent = symbol;
+  title.textContent = heading;
+  message.textContent = text;
+  retryButton.textContent = buttonText;
+  retryButton.disabled = false;
+}
+
+async function verifyPayment() {
+
+  if (!txnRef) {
+    showResult(
+      "⚠️",
+      "Reference Not Found",
+      "We could not find your transaction reference. Please contact Edesvino Services support with your payment receipt.",
+      "Refresh Page"
+    );
+
+    retryButton.onclick = () => window.location.reload();
+    return;
+  }
+
+  retryButton.disabled = true;
+  retryButton.textContent = "Verifying...";
+
+  icon.textContent = "⏳";
+  title.textContent = "Checking your payment...";
+  message.textContent =
+    "Please wait while Quickteller payment verification is completed.";
+
+  try {
+
+    const { data: sessionData, error: sessionError } =
+      await db.auth.getSession();
+
+    if (sessionError || !sessionData.session) {
+      showResult(
+        "🔐",
+        "Login Required",
+        "Please sign in using the customer account that made this booking, then return to this payment result page.",
+        "Try Again"
+      );
+      return;
+    }
+
+    const { data, error } = await db.functions.invoke(
+      "quickteller-x3",
+      {
+        body: {
+          action: "verify-payment",
+          txnref: txnRef
+        }
+      }
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    if (data && data.success === true) {
+
+      showResult(
+        "✅",
+        "Payment Confirmed!",
+        "Your Quickteller payment has been successfully verified. Your booking remains subject to provider confirmation.",
+        "Check Again"
+      );
+
+    } else {
+
+      showResult(
+        "⏳",
+        "Payment Not Yet Confirmed",
+        (data && data.message)
+          ? data.message
+          : "Your payment has not yet been confirmed. If you have paid, please wait briefly and check again.",
+        "Check Payment Again"
+      );
+
+    }
+
+  } catch (error) {
+
+    console.error("Payment verification error:", error);
+
+    showResult(
+      "⚠️",
+      "Verification Incomplete",
+      "We could not complete payment verification right now. Your payment status has not been changed by this page. Please try again.",
+      "Try Again"
+    );
+
+  }
+
+}
+
+verifyPayment();
+</script>
+
+</body>
+</html>
